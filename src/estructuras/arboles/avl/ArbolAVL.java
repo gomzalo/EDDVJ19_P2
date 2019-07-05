@@ -44,7 +44,7 @@ public class ArbolAVL {
     
     // Obtiene la altura del nodo.
     private int altura(NodoAVL t){
-        return t == null? -1 : t.altura;
+        return t == null? -1 : t.getAltura();
     }
     
     // Maximo del nodo izq/der.
@@ -361,15 +361,17 @@ public class ArbolAVL {
     }
     
     public String graficar(String opcion) throws IOException, InterruptedException{
+        System.out.println("Se muestra la grafica de los elementos en el arbol AVL:");
         String nombre = "arbolAVL";
         String dot_subgrafo_arbol_avl =
-        "\n\tsubgraph cluster_avl"
+            "\n\tsubgraph cluster_avl"
         +   "\n\t{"
-        +   "\n\t\tgraph[color = \"lightcyan\", fontcolor = \"steelblue4\", fontname = serif, style = filled, label = \"Catedraticos\"];"
-        +   "\n\t\tnode[shape = egg, style = filled, color = navyblue, fontcolor = white, peripheries = 2];"
-        +   "\n\t\tedge[color = deeppink];"
-        +       "\n"
-        + 	"\n"
+        +   "\n"
+            +   "\n\t\tgraph[color = \"lightcyan:mistyrose\", fontcolor = \"darkslateblue\", fontname = serif, style = filled, label = \"Catedraticos\"];"
+            +   "\n\t\tnode[shape = egg, style = filled, color = \"gray9\", fillcolor = navyblue, fontcolor = white, peripheries = 2];"
+            +   "\n\t\tedge[color = \"deeppink:gray38:firebrick1\"];"
+            +   "\n"
+            + 	"\n"
             +   generarDot(raiz, "catedratico_")
         +   "\n\t}";
         
