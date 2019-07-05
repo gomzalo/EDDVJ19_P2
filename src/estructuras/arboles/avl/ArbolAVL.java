@@ -362,21 +362,22 @@ public class ArbolAVL {
     
     public String graficar(String opcion) throws IOException, InterruptedException{
         String nombre = "arbolAVL";
+        String dot_subgrafo_arbol_avl = 
+        "\n\tsubgraph cluster_avl"
+        +   "\n\t{"
+        +   "\n\t\tgraph[color = \"lightcyan\", fontcolor = \"steelblue4\", fontname = serif, style = filled, label = \"Catedraticos\"];"
+        +   "\n\t\tnode[shape = egg, style = filled, color = navyblue, fontcolor = white, peripheries = 2];"
+        +   "\n\t\tedge[color = deeppink];"
+        +       "\n"
+        + 	"\n"
+            +   generarDot(raiz, "catedratico_")
+        +   "\n\t}";
         
         if(opcion.equals("grafo")) {
-            String dot_grafo_arbol_avl = "";
-            dot_grafo_arbol_avl =  
+            String dot_grafo_arbol_avl =   
             "digraph avl"
             +   "\n{"
-                +   "\n\tgraph[color = \"lightcyan\", fontcolor = \"steelblue4\", fontname = serif, style = filled, label = \"Catedraticos\"];"
-                +   "\n\tnode[shape = egg, style = filled, color = navyblue, fontcolor = white, peripheries = 2];"
-                +   "\n\tedge[color = deeppink];"
-                +   "\n"
-//                +   "\n\tsubgraph cluster_avl"
-//                +   "\n\t{"
-                +   "\n"
-                    +   generarDot(raiz)
-//                +   "\n\t}"
+                +   dot_subgrafo_arbol_avl
             +   "\n}";
             Escritura.escribirArchivoDot(nombre, dot_grafo_arbol_avl);
             Escritura.generarImagenDot(nombre);
@@ -384,144 +385,73 @@ public class ArbolAVL {
             dot_grafo_arbol_avl = "";
             return "";
         }else if(opcion.equals("subgrafo")) {
-            String dot_subgrafo_arbol_avl = "";
-            dot_subgrafo_arbol_avl =
-            "\n\tsubgraph cluster_avl"
-            + 	"\n\t{"
-            +   "\n\tgraph[color = \"lightcyan\", fontcolor = \"steelblue4\", fontname = serif, style = filled, label = \"Catedraticos\"];"
-            + 	"\n\tnode[shape = egg, style = filled, color = navyblue, fontcolor = white, peripheries = 2];"
-            +   "\n\tedge[color = deeppink];"
-            + 	"\n"
-            + 	"\n"
-                +   generarDot(raiz)
-            + 	"\n\t}";
             return dot_subgrafo_arbol_avl;
         }
         return "";
     }
     
-    private String generarDot(NodoAVL r) throws IOException{
+    private String generarDot(NodoAVL r, String _id) throws IOException{
         if(r != null)
         {
-            generarDot(r.getIzquierda());
+            generarDot(r.getIzquierda(), _id);
             // ................ Inicia codigo para graficar ................
             if(r.getIzquierda() != null && r.getDerecha() != null)
             {
                 if(r.getIzquierda() != null)
                 {
-                    // Datos del nodo
-                    avl_aux += 	
-                    "\t\t" + r.getCatedratico().getId()
-                    +	"[label = <"
-                    +   "<FONT POINT-SIZE = \"11\">"
-                    +   " ID: " + r.getCatedratico().getId()
-                    +   " </FONT>"
-                    +   ">"
-                    +   "]"
-                    +	"\n";
-                        
+                    // Datos del nodo raiz
+                    avl_aux += r.getContenidoNodo(_id);
                     // Datos del nodo izquierdo
-                    avl_aux += 	
-                    "\t\t" + r.getIzquierda().getCatedratico().getId()
-                    +	"[label = <"
-                    +   "<FONT POINT-SIZE = \"11\">"
-                    +   " ID: " + r.getIzquierda().getCatedratico().getId()
-                    +   " </FONT>"
-                    +   ">"
-                    +   "]"
-                    +	"\n";
+                    avl_aux +=	r.getIzquierda().getContenidoNodo(_id);
                     // Enlaces a los nodos
                     avl_aux += 	
-                    "\t\t" + r.getCatedratico().getId() + "->" + r.getIzquierda().getCatedratico().getId()
+                    "\t\t" + _id + r.getCatedratico().getId() + "->" + _id + r.getIzquierda().getCatedratico().getId()
                     +   "\n";
                 }
                 if(r.getDerecha() != null)
                 {
-                    // Datos del nodo
-                    avl_aux += 	
-                    "\t\t" + r.getCatedratico().getId()
-                    +	"[label = <"
-                    +   "<FONT POINT-SIZE = \"11\">"
-                    +   " ID: " + r.getCatedratico().getId()
-                    +   " </FONT>"
-                    +    ">"
-                    +   "]"
-                    +	"\n";
+                    // Datos del nodo raiz
+                    avl_aux += r.getContenidoNodo(_id);
 
-                    avl_aux +=
-                    "\t\t" + r.getDerecha().getCatedratico().getId()
-                    +	"[label = <"
-                    +   "<FONT POINT-SIZE = \"11\">"
-                    +   " ID: " + r.getDerecha().getCatedratico().getId()
-                    +   " </FONT>"
-                    +   ">"
-                    +   "]"
-                    + 	"\n";
-
+                    avl_aux += r.getDerecha().getContenidoNodo(_id);
                     // Enlaces a los nodos
                     avl_aux += 	
-                    "\t\t" + r.getCatedratico().getId() + "->" + r.getDerecha().getCatedratico().getId() 
+                    "\t\t" + _id + r.getCatedratico().getId() + "->" + _id + r.getDerecha().getCatedratico().getId() 
                     +   "\n";
                 }
             }
             else
             {
-            	// Datos del nodo
-            	avl_aux += 	
-                "\t\t" + r.getCatedratico().getId()
-                +   "[label = <"
-                +   "<FONT POINT-SIZE = \"11\">"
-                +   " ID: " + r.getCatedratico().getId()
-                +   " </FONT>"
-                +   ">"
-                +   "]"
-                +   "\n";
-
+            	// Datos del nodo raiz
+            	avl_aux += r.getContenidoNodo(_id);
             	// Enlaces a los nodos
-                avl_aux += "\t\t" + r.getCatedratico().getId();
-                
+                avl_aux += "\t\t" + _id + r.getCatedratico().getId();
+                // Verificando si solo tiene hijo derecho
                 if(r.getIzquierda() != null && r.getDerecha() == null)
                 {
                     // Enlaces a los nodos
                     avl_aux += 	
-                    "->" + r.getIzquierda().getCatedratico().getId() 
+                    "->" + _id + r.getIzquierda().getCatedratico().getId() 
                     +   "\n";
-                    
                     // Datos del nodo izquierdo
-                    avl_aux +=
-                    "\t\t" + r.getIzquierda().getCatedratico().getId()
-                    +	"[label = <"
-                    +   "<FONT POINT-SIZE = \"11\">"
-                    +   " ID: " + r.getIzquierda().getCatedratico().getId()
-                    +   " </FONT>"
-                    +   ">"
-                    +   "]"
-                    +	"\n";
+                    avl_aux += r.getIzquierda().getContenidoNodo(_id);
                 }
+                // Verificando si solo tiene hijo izquierdo
                 if(r.getIzquierda() == null && r.getDerecha() != null)
                 {
                     // Enlaces a los nodos
                     avl_aux += 	
-                    "->" + r.getDerecha().getCatedratico().getId()
+                    "->" + _id + r.getDerecha().getCatedratico().getId()
                     + 	"\n";
-
                     // Datos del nodo derecho
-                    avl_aux += 	
-                    "\t\t" + r.getDerecha().getCatedratico().getId()
-                    +	"[label = <"
-                    +   "<FONT POINT-SIZE = \"11\">"
-                    +   " ID: " + r.getDerecha().getCatedratico().getId()
-                    +   " </FONT>"
-                    +   ">"
-                    +   "]"
-                    +	"\n";
+                    avl_aux += r.getDerecha().getContenidoNodo(_id);
                 }
             }
-            
             avl_aux += "\n";
             // ................ Finaliza codigo para graficar ................
-            generarDot(r.getDerecha());
+            generarDot(r.getDerecha(), _id);
         }
         return avl_aux;
     }
+    
 }

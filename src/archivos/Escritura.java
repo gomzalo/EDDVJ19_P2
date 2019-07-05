@@ -44,10 +44,10 @@ public class Escritura {
     public static void generarImagenDot(String nombre) throws IOException, InterruptedException, InterruptedException, InterruptedException{
         System.out.println("Generando imagen, a partir de dot.");
         String direccionDot = "dot";
-        String paramT = "-Tjpeg";
+        String paramT = "-Tpng";
         String direccionArchivo = "/home/g/Escritorio/" + nombre + ".dot";
         String paramO = "-o";
-        String direccionImagen = "/home/g/Escritorio/" + nombre + ".jpeg";
+        String direccionImagen = "/home/g/Escritorio/" + nombre + ".png";
         direccion_imagen_recientemente_generada = direccionArchivo;
         String[] cmd = new String[5];
         cmd[0] = direccionDot;
