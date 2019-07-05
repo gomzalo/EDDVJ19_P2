@@ -62,21 +62,22 @@ public class NodoAVL {
         this.catedratico = catedratico;
     }
     
-    public String getContenidoNodo(String _id){
+    public String getContenido(String _id){
         String contenido = "";
         if(this.getCatedratico() != null){
             contenido +=
                 "\t\t" + _id + this.getCatedratico().getId()
-            +   "[label = <"
-            +   " ID: " + this.getCatedratico().getId()
-            +   " <BR /> "
-            +   "<FONT POINT-SIZE = \"9\">"
-            +   " <BR /> "
-            +   "Nombre: " + this.getCatedratico().getNombre()
-            +   " <BR /> "
-            +   "Direccion: " + this.getCatedratico().getDireccion()
-            +   " </FONT>"
-            +   ">"
+            +   "[label = "
+                +   "<"
+                +   " ID: " + this.getCatedratico().getId()
+                +   " <BR /> "
+                    +   "<FONT POINT-SIZE = \"9\">"
+                    +   " <BR /> "
+                    +   "Nombre: " + this.getCatedratico().getNombre()
+                    +   " <BR /> "
+                    +   "Direccion: " + this.getCatedratico().getDireccion()
+                    +   " </FONT>"
+                +   ">"
             +   "]"
             +   "\n";
         }

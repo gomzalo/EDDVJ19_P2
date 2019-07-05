@@ -362,7 +362,7 @@ public class ArbolAVL {
     
     public String graficar(String opcion) throws IOException, InterruptedException{
         String nombre = "arbolAVL";
-        String dot_subgrafo_arbol_avl = 
+        String dot_subgrafo_arbol_avl =
         "\n\tsubgraph cluster_avl"
         +   "\n\t{"
         +   "\n\t\tgraph[color = \"lightcyan\", fontcolor = \"steelblue4\", fontname = serif, style = filled, label = \"Catedraticos\"];"
@@ -382,9 +382,9 @@ public class ArbolAVL {
             Escritura.escribirArchivoDot(nombre, dot_grafo_arbol_avl);
             Escritura.generarImagenDot(nombre);
             avl_aux = "";
-            dot_grafo_arbol_avl = "";
             return "";
         }else if(opcion.equals("subgrafo")) {
+            avl_aux = "";
             return dot_subgrafo_arbol_avl;
         }
         return "";
@@ -395,35 +395,39 @@ public class ArbolAVL {
         {
             generarDot(r.getIzquierda(), _id);
             // ................ Inicia codigo para graficar ................
+            // Verificando si tiene ambos hijos
             if(r.getIzquierda() != null && r.getDerecha() != null)
             {
+                // Verificando hijo izquierdo
                 if(r.getIzquierda() != null)
                 {
-                    // Datos del nodo raiz
-                    avl_aux += r.getContenidoNodo(_id);
-                    // Datos del nodo izquierdo
-                    avl_aux +=	r.getIzquierda().getContenidoNodo(_id);
+                    // Contenido del nodo raiz
+                    avl_aux += r.getContenido(_id);
+                    // Contenido del nodo izquierdo
+                    avl_aux +=	r.getIzquierda().getContenido(_id);
                     // Enlaces a los nodos
                     avl_aux += 	
                     "\t\t" + _id + r.getCatedratico().getId() + "->" + _id + r.getIzquierda().getCatedratico().getId()
                     +   "\n";
                 }
+                // Verificando hijo derecho
                 if(r.getDerecha() != null)
                 {
-                    // Datos del nodo raiz
-                    avl_aux += r.getContenidoNodo(_id);
-
-                    avl_aux += r.getDerecha().getContenidoNodo(_id);
+                    // Contenido del nodo raiz
+                    avl_aux += r.getContenido(_id);
+                    // Contenido del nodo izquierdo
+                    avl_aux += r.getDerecha().getContenido(_id);
                     // Enlaces a los nodos
                     avl_aux += 	
                     "\t\t" + _id + r.getCatedratico().getId() + "->" + _id + r.getDerecha().getCatedratico().getId() 
                     +   "\n";
                 }
             }
+            // Si solo tiene un hijo
             else
             {
-            	// Datos del nodo raiz
-            	avl_aux += r.getContenidoNodo(_id);
+            	// Contenido del nodo raiz
+            	avl_aux += r.getContenido(_id);
             	// Enlaces a los nodos
                 avl_aux += "\t\t" + _id + r.getCatedratico().getId();
                 // Verificando si solo tiene hijo derecho
@@ -433,8 +437,8 @@ public class ArbolAVL {
                     avl_aux += 	
                     "->" + _id + r.getIzquierda().getCatedratico().getId() 
                     +   "\n";
-                    // Datos del nodo izquierdo
-                    avl_aux += r.getIzquierda().getContenidoNodo(_id);
+                    // Contenido del nodo izquierdo
+                    avl_aux += r.getIzquierda().getContenido(_id);
                 }
                 // Verificando si solo tiene hijo izquierdo
                 if(r.getIzquierda() == null && r.getDerecha() != null)
@@ -443,8 +447,8 @@ public class ArbolAVL {
                     avl_aux += 	
                     "->" + _id + r.getDerecha().getCatedratico().getId()
                     + 	"\n";
-                    // Datos del nodo derecho
-                    avl_aux += r.getDerecha().getContenidoNodo(_id);
+                    // Contenido del nodo derecho
+                    avl_aux += r.getDerecha().getContenido(_id);
                 }
             }
             avl_aux += "\n";

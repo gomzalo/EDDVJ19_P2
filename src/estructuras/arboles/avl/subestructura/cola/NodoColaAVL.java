@@ -35,6 +35,5 @@ public class NodoColaAVL {
     public void setCatedratico(Catedratico catedratico) {
         this.catedratico = catedratico;
     }
-    
-    
+
 }

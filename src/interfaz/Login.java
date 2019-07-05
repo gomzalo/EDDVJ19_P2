@@ -55,6 +55,9 @@ public class Login extends javax.swing.JFrame {
     // ||||||||||||||||||||||||||||     INICIA AVL   ||||||||||||||||||||||||||||
         ArbolAVL catest = new ArbolAVL();
         catest.insertar(new Catedratico(1, "Marioco", "Z1"));
+        catest.insertar(new Catedratico(10, "Rocio", "Z6"));
+        catest.insertar(new Catedratico(8, "Diana", "Z4"));
+        catest.insertar(new Catedratico(77, "Ruth", "Z2"));
         catest.insertar(new Catedratico(100, "Claudia", "Z14"));
         catest.insertar(new Catedratico(14, "Lady", "Z2"));
         catest.insertar(new Catedratico(22, "Espino", "Z11"));
