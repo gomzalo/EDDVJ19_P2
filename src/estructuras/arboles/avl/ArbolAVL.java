@@ -99,7 +99,7 @@ public class ArbolAVL {
             }
             
         }else{
-            ;   // Duplicado; no hace nada.
+            // Duplicado; no hace nada.
             System.out.println("Valor duplicado.");
         }
         t.setAltura(max(altura(t.getIzquierda()), altura(t.getDerecha())) + 1);
@@ -264,21 +264,23 @@ public class ArbolAVL {
     
     // Editar
 //    public void editar(String codigo_, Catedratico catedratico_nuevo) {
-    public void editar(int codigo_, Catedratico catedratico_nuevo) {
-    	editar(codigo_, catedratico_nuevo, raiz);
+    public void editar(int id, String nuevo_nombre, String nueva_direccion) {
+    	editar(id, nuevo_nombre, nueva_direccion, raiz);
     }
     
 //    private void editar(String codigo_, Catedratico catedratico_nuevo, NodoAVL t) {
-    private void editar(int codigo_, Catedratico catedratico_nuevo, NodoAVL t) {
+    private void editar(int id, String nuevo_nombre, String nueva_direccion, NodoAVL t) {
     	if(t != null) {
 //            if(t.getCatedratico().getId().compareTo(codigo_) == 0) {
-            if(t.getCatedratico().getId() == codigo_) {
-                t.setCatedratico(null);
-                t.setCatedratico(catedratico_nuevo);
+            if(id == t.getCatedratico().getId()) {
+                t.getCatedratico().setNombre(nuevo_nombre);
+                t.getCatedratico().setDireccion(nueva_direccion);
+                System.out.println("Se ha editado el catedratico con ID: " + id + ", por: "
+                        + "\nnombre: " + nuevo_nombre + ", direccion: " + nueva_direccion + ".");
                 return;
             }
-            editar(codigo_, catedratico_nuevo, t.getIzquierda());
-            editar(codigo_, catedratico_nuevo, t.getDerecha());
+            editar(id, nuevo_nombre, nueva_direccion, t.getIzquierda());
+            editar(id, nuevo_nombre, nueva_direccion, t.getDerecha());
     	}
     }
 
@@ -332,7 +334,9 @@ public class ArbolAVL {
     
     // Recorrer inorder.
     public void inorder(){
+        System.out.println("Se muestran los catedraticos en el arbol AVL:");
         inorder(raiz);
+        System.out.print("\n");
     }
         
     private void inorder(NodoAVL r){
@@ -361,7 +365,7 @@ public class ArbolAVL {
     }
     
     public String graficar(String opcion) throws IOException, InterruptedException{
-        System.out.println("Se muestra la grafica de los elementos en el arbol AVL:");
+        System.out.println("Se muestra la grafica de los catedraticos en el arbol AVL:");
         String nombre = "arbolAVL";
         String dot_subgrafo_arbol_avl =
             "\n\tsubgraph cluster_avl"

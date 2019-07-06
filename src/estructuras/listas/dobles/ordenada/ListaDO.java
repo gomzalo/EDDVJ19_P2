@@ -44,7 +44,7 @@ public class ListaDO {
         nuevo.setSiguiente(inicio);
         inicio.setAnterior(nuevo);
         inicio = nuevo;
-        System.out.println("Se inserto correctamente el ID: " + nuevo.getUsuario().getId() + ", al inicio.");
+        System.out.println("Se inserto correctamente el usuario con ID: " + nuevo.getUsuario().getId() + ", al inicio.");
     }
     
     public void insertarAlMedio(NodoDO nuevo){
@@ -68,7 +68,18 @@ public class ListaDO {
             temporal.setSiguiente(nuevo);
             nuevo.setAnterior(temporal);
         }
-        System.out.println("Se inserto correctamente el ID: " + nuevo.getUsuario().getId() + ", al medio.");
+        System.out.println("Se inserto correctamente el usuario con ID: " + nuevo.getUsuario().getId() + ", al medio.");
+    }
+    
+    public void modificar(int id, String nuevo_nombre, String nueva_contrasena){
+        if(buscar(id)){
+            buscarNodo(id).getUsuario().setNombre(nuevo_nombre);
+            buscarNodo(id).getUsuario().setContrasena(nueva_contrasena);
+            System.out.println("Se ha modificado el usuario con ID: " + id + ", por: "
+                    + "\nnombre: " + nuevo_nombre + ", contrasena: "+ nueva_contrasena + ".");
+        }else{
+            System.out.println("No existe un usuario con ID: " + id + ".");
+        }
     }
     
     public boolean buscar(int id){
@@ -77,22 +88,19 @@ public class ListaDO {
             return false;
         } else {
             if(id == inicio.getUsuario().getId()){
-                System.out.println( "Se ha encontrado el nodo: "
-                                +   "\nID: " + inicio.getUsuario().getId());
+                System.out.println("Se ha encontrado el usuario con ID: " + inicio.getUsuario().getId() + ".");
                 return true;
             }
             NodoDO auxiliar = inicio.getSiguiente();
             while(auxiliar != null){
                 if(id == auxiliar.getUsuario().getId()){
-                    System.out.println( "Se ha encontrado el nodo: "
-                                +   "\nID: " + auxiliar.getUsuario().getId());
+                    System.out.println("Se ha encontrado el usuario con ID: " + auxiliar.getUsuario().getId() + ".");
                     return true;
                 }
                 auxiliar = auxiliar.getSiguiente();
             }
         }
-        System.out.println( "No se ha encontrado el nodo: "
-                                +   "\nID: " + id);
+        System.out.println("No se ha encontrado el usuario con ID: " + id + ".");
         return false;
     }
     
@@ -103,24 +111,21 @@ public class ListaDO {
             return null;
         } else {
             if(id == inicio.getUsuario().getId()){
-                System.out.println( "Se ha encontrado el nodo: "
-                                +   "\nID: " + inicio.getUsuario().getId());
+                System.out.println("Se ha encontrado el usuario con ID: " + inicio.getUsuario().getId() + ".");
                 encontrado = inicio;
                 return encontrado;
             }
             NodoDO auxiliar = inicio.getSiguiente();
             while(auxiliar != null){
                 if(id == auxiliar.getUsuario().getId()){
-                    System.out.println( "Se ha encontrado el nodo: "
-                                +   "\nID: " + auxiliar.getUsuario().getId());
+                    System.out.println("Se ha encontrado el usuario con ID: " + auxiliar.getUsuario().getId() + ".");
                     encontrado = auxiliar;
                     return encontrado;
                 }
                 auxiliar = auxiliar.getSiguiente();
             }
         }
-        System.out.println( "No se ha encontrado el nodo: "
-                                +   "\nID: " + id);
+        System.out.println("No se ha encontrado el usuario con ID: " + id + ".");
         return null;
     }
     
@@ -128,16 +133,62 @@ public class ListaDO {
         if(esVacia()){
             System.out.println("Lista vacia.");
         } else {
-            System.out.println("Se muestra los elementos en la lista:");
-            System.out.print("ID: " + inicio.getUsuario().getId() + "<->");
-            NodoDO auxiliar = inicio.getSiguiente();
-            while(auxiliar.getSiguiente() != null){
-                System.out.print( "ID: " + auxiliar.getUsuario().getId()
-                                +   "<->");
+            System.out.println("Se muestran los usuarios en la lista:");
+            System.out.print("ID: " + inicio.getUsuario().getId() + " <-> ");
+            NodoDO auxiliar = inicio;
+            while(auxiliar != null){
+                System.out.print("ID: " + auxiliar.getUsuario().getId()
+                                + " <-> ");
                 auxiliar = auxiliar.getSiguiente();
             }
-            System.out.print( "ID: " + auxiliar.getUsuario().getId()
-                        +   "\n");
+            System.out.print("\n");
+        }
+    }
+    
+    public void eliminar(int id){
+        if(!buscar(id)){
+            System.out.println("No existe este ID en la lista.");
+        }else{
+            // Solo hay un elemento
+            if(id == inicio.getUsuario().getId() && inicio.getSiguiente() == null){
+
+                 System.out.println( "Se ha eliminado el nodo: "
+                                +   "\nID: " + inicio.getUsuario().getId()
+                                +   ", la lista ha quedado vacia.");
+                inicio = null;
+                tamano = 0;
+                return;
+            // Eliminacion al inicio
+            }else if(id == inicio.getUsuario().getId()){
+                System.out.println( "Se ha eliminado el nodo: "
+                                +   "\nID: " + inicio.getUsuario().getId()
+                                +   ", al inicio.");
+                inicio = inicio.getSiguiente();
+                inicio.setAnterior(null);
+                tamano--;
+            }else{
+                NodoDO auxiliar = inicio.getSiguiente();
+                while(auxiliar.getSiguiente() != null){
+                    if(id == auxiliar.getUsuario().getId()){
+                        System.out.println( "Se ha eliminado el nodo: "
+                               +   "\nID: " + auxiliar.getUsuario().getId()
+                               +   ", al medio.");
+                        auxiliar.getAnterior().setSiguiente(auxiliar.getSiguiente());
+                        auxiliar.getSiguiente().setAnterior(auxiliar.getAnterior());
+                        auxiliar.setSiguiente(null);
+                        auxiliar.setAnterior(null);
+                        return;
+                    }
+                    auxiliar = auxiliar.getSiguiente();
+                }
+                if(id == auxiliar.getUsuario().getId()){
+                    System.out.println( "Se ha eliminado el nodo: "
+                               +   "\nID: " + auxiliar.getUsuario().getId()
+                               +   ", al final.");
+                    auxiliar.getAnterior().setSiguiente(null);
+                }
+                tamano--;
+            }
         }
     }
     

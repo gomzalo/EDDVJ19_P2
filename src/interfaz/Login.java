@@ -59,41 +59,59 @@ public class Login extends javax.swing.JFrame {
     public static void main(String args[]) throws IOException, InterruptedException {
 // ::::::::::::::::::::::::::::::::     INICIA TEST    ::::::::::::::::::::::::::::::::
     // ||||||||||||||||||||||||||||     INICIA AVL      ||||||||||||||||||||||||||||
-        ArbolAVL catest = new ArbolAVL();
-        catest.insertar(new Catedratico(1, "Marioco", "Z1"));
-        catest.insertar(new Catedratico(10, "Rocio", "Z6"));
-        catest.insertar(new Catedratico(8, "Diana", "Z4"));
-        catest.insertar(new Catedratico(77, "Ruth", "Z2"));
-        catest.insertar(new Catedratico(100, "Claudia", "Z14"));
-        catest.insertar(new Catedratico(14, "Lady", "Z2"));
-        catest.insertar(new Catedratico(22, "Espino", "Z11"));
-        catest.insertar(new Catedratico(54, "Bertha", "Z8"));
-        catest.graficar("grafo");
-        catest.inorder();
+//        ArbolAVL catest = new ArbolAVL();
+//        catest.insertar(new Catedratico(1, "Marioco", "Z1"));
+//        catest.insertar(new Catedratico(10, "Rocio", "Z6"));
+//        catest.insertar(new Catedratico(8, "Diana", "Z4"));
+//        catest.insertar(new Catedratico(77, "Ruth", "Z2"));
+//        catest.insertar(new Catedratico(100, "Claudia", "Z14"));
+//        catest.insertar(new Catedratico(14, "Lady", "Z2"));
+//        catest.insertar(new Catedratico(22, "Espino", "Z11"));
+//        catest.insertar(new Catedratico(54, "Bertha", "Z8"));
+//        catest.inorder();
+//        catest.editar(10, "Martha", "Z22");
+//        catest.inorder();
+//        catest.graficar("grafo");
     // ||||||||||||||||||||||||||||     FIN AVL         ||||||||||||||||||||||||||||
-    // ||||||||||||||||||||||||||||     INICIA LDO      ||||||||||||||||||||||||||||
-        ListaDC ldc = new ListaDC();
-        ldc.insertar(new NodoDC(new Edificio("T1")));
-        ldc.insertar(new NodoDC(new Edificio("T1")));
-        ldc.insertar(new NodoDC(new Edificio("T3")));
-        ldc.insertar(new NodoDC(new Edificio("S11")));
-        ldc.eliminar("T3");
-        ldc.insertar(new NodoDC(new Edificio("T7")));
-        ldc.insertar(new NodoDC(new Edificio("M2")));
-        ldc.insertar(new NodoDC(new Edificio("Biblioteca central")));
-        ldc.mostrar();
-        ldc.graficar("grafo");
-    // ||||||||||||||||||||||||||||     FIN LDO         ||||||||||||||||||||||||||||
     // ||||||||||||||||||||||||||||     INICIA LDC      ||||||||||||||||||||||||||||
-        ListaDO ldo = new ListaDO();
-        ldo.insertar(new NodoDO(new Usuario(2, "Mario", "Rockw8u28", "Colaborador")));
-        ldo.insertar(new NodoDO(new Usuario(1, "Ruth", "Love2999", "Usuario")));
-        ldo.insertar(new NodoDO(new Usuario(55, "Claudia", "Fisica12333", "Colaborador")));
-        ldo.insertar(new NodoDO(new Usuario(1, "Ruth", "Love2999", "Usuario")));
-        ldo.insertar(new NodoDO(new Usuario(13, "Lady", "dasoiio", "Colaborador")));
-        ldo.mostrar();
-        ldo.graficar("grafo");
+//        ListaDC ldc = new ListaDC();
+//        ldc.insertar(new NodoDC(new Edificio("T1")));
+//        ldc.insertar(new NodoDC(new Edificio("T1")));
+//        ldc.insertar(new NodoDC(new Edificio("T3")));
+//        ldc.insertar(new NodoDC(new Edificio("S11")));
+//        ldc.insertar(new NodoDC(new Edificio("T7")));
+//        ldc.insertar(new NodoDC(new Edificio("T9")));
+//        ldc.insertar(new NodoDC(new Edificio("M2")));
+//        ldc.insertar(new NodoDC(new Edificio("Biblioteca central")));
+//        ldc.insertar(new NodoDC(new Edificio("Iglu")));
+//        ldc.mostrar();
+//        ldc.eliminar("Biblioteca central");
+//        ldc.eliminar("S11");
+//        ldc.eliminar("T9");
+//        ldc.mostrar();
+//        ldc.modificar("T3", "T33");
+//        ldc.mostrar();
+//        ldc.graficar("grafo");
     // ||||||||||||||||||||||||||||     FIN LDC         ||||||||||||||||||||||||||||
+    // ||||||||||||||||||||||||||||     INICIA LDO      ||||||||||||||||||||||||||||
+//        ListaDO ldo = new ListaDO();
+//        ldo.insertar(new NodoDO(new Usuario(2, "Mario", "Rockw8u28", "Colaborador")));
+//        ldo.insertar(new NodoDO(new Usuario(1, "Ruth", "Love2999", "Usuario")));
+//        ldo.insertar(new NodoDO(new Usuario(55, "Claudia", "Fisica12333", "Colaborador")));
+////        ldo.insertar(new NodoDO(new Usuario(1, "Ruth", "Love2999", "Usuario")));
+//        ldo.insertar(new NodoDO(new Usuario(1100, "Rocio", "Love292119", "Usuario")));
+//        ldo.insertar(new NodoDO(new Usuario(34, "Diana", "Love299129", "Usuario")));
+//        ldo.insertar(new NodoDO(new Usuario(13, "Lady", "dasoiio", "Colaborador")));
+//        ldo.mostrar();
+//        ldo.eliminar(1100);
+//        ldo.eliminar(1);
+//        ldo.eliminar(34);
+////        ldo.eliminar(2);
+//        ldo.mostrar();
+//        ldo.modificar(55, "Claudio", "root289");
+//        ldo.mostrar();        
+//        ldo.graficar("grafo");
+    // ||||||||||||||||||||||||||||     FIN LDO         ||||||||||||||||||||||||||||
 // ::::::::::::::::::::::::::::::::     FIN TEST    ::::::::::::::::::::::::::::::::
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
