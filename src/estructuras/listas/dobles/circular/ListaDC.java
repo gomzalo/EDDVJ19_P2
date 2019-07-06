@@ -82,7 +82,6 @@ public class ListaDC {
         NodoDC temporal = inicio;
         NodoDC auxiliar = inicio.getSiguiente();
         while(auxiliar != null){
-//            if(nuevo.getId() >= temporal.getId() && nuevo.getId() <= auxiliar.getId()){
             if(nuevo.getEdificio().getNombre().compareTo(temporal.getEdificio().getNombre()) > 0 
             && nuevo.getEdificio().getNombre().compareTo(auxiliar.getEdificio().getNombre()) < 0){
                 temporal.setSiguiente(nuevo);
@@ -105,7 +104,7 @@ public class ListaDC {
     
     public boolean buscar(String nombre){
         if(esVacia()){
-            System.out.println("Lista vacia.");
+            System.out.println("Lista doble circular vacia.");
             return false;
         } else {
             if(nombre.equals(inicio.getEdificio().getNombre())){
@@ -136,18 +135,18 @@ public class ListaDC {
     public NodoDC buscarNodo(String nombre){
         NodoDC encontrado;
         if(esVacia()){
-            System.out.println("Lista vacia.");
+            System.out.println("Lista doble circular vacia.");
             return null;
         } else {
             if(nombre.equals(inicio.getEdificio().getNombre())){
-                System.out.println( "Se ha encontrado el edificio con nombre: " + inicio.getEdificio().getNombre() + ".");
+                System.out.println("Se ha encontrado el edificio con nombre: " + inicio.getEdificio().getNombre() + ".");
                 encontrado = inicio;
                 return encontrado;
             }
             NodoDC auxiliar = inicio.getSiguiente();
             while(auxiliar != inicio){
                 if(nombre.equals(auxiliar.getEdificio().getNombre())){
-                    System.out.println( "Se ha encontrado el edificio con nombre: " + auxiliar.getEdificio().getNombre() + ".");
+                    System.out.println("Se ha encontrado el edificio con nombre: " + auxiliar.getEdificio().getNombre() + ".");
                     encontrado = auxiliar;
                     return encontrado;
                 }
@@ -162,7 +161,6 @@ public class ListaDC {
             System.out.println("No existe el edificio con nombre: " + nombre + ", en la lista.");
         }else{
             // Solo hay un elemento
-//            if(id == inicio.getId() && id == fin.getId() && inicio == fin){
             if(nombre.equals(inicio.getEdificio().getNombre()) 
             && nombre.equals(fin.getEdificio().getNombre()) && inicio == fin){
                  System.out.println("Se ha eliminado el edificio con nombre: " + inicio.getEdificio().getNombre()
@@ -179,7 +177,6 @@ public class ListaDC {
                 fin.setSiguiente(inicio);
                 tamano--;
             // Eliminacion al final
-//            }else if(id == fin.getId()){
             }else if(nombre.equals(fin.getEdificio().getNombre())){
                 System.out.println("Se ha eliminado el edificio con nombre: " + fin.getEdificio().getNombre()
                                 +   ", al final.");
@@ -191,7 +188,6 @@ public class ListaDC {
             }else{
                 NodoDC auxiliar = inicio.getSiguiente();
                 while(auxiliar != inicio){
-//                    if(id == auxiliar.getId()){
                     if(nombre.equals(auxiliar.getEdificio().getNombre())){
                         System.out.println("Se ha eliminado el edificio con nombre: " + auxiliar.getEdificio().getNombre()
                                +   ", al medio.");
@@ -210,7 +206,7 @@ public class ListaDC {
     
     public void mostrar(){
         if(esVacia()){
-            System.out.println("Lista vacia.");
+            System.out.println("Lista doble circular vacia.");
         } else {
             System.out.println("Se muestran los edificios en la lista:");
             System.out.print("Nombre: " + inicio.getEdificio().getNombre() + " <-> ");

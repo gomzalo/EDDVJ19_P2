@@ -10,9 +10,18 @@ import estructuras.listas.dobles.circular.ListaDC;
 import estructuras.listas.dobles.circular.NodoDC;
 import estructuras.listas.dobles.ordenada.ListaDO;
 import estructuras.listas.dobles.ordenada.NodoDO;
+import estructuras.listas.simples.ListaS;
+import estructuras.listas.simples.NodoS;
+import estructuras.listas.simples.ordenada.ListaSO_C;
+import estructuras.listas.simples.ordenada.ListaSO_S;
+import estructuras.listas.simples.ordenada.NodoSO_C;
+import estructuras.listas.simples.ordenada.NodoSO_S;
 import java.io.IOException;
+import pojos.Asignacion;
 import pojos.Catedratico;
+import pojos.Curso;
 import pojos.Edificio;
+import pojos.Salon;
 import pojos.Usuario;
 
 /**
@@ -112,6 +121,54 @@ public class Login extends javax.swing.JFrame {
 //        ldo.mostrar();        
 //        ldo.graficar("grafo");
     // ||||||||||||||||||||||||||||     FIN LDO         ||||||||||||||||||||||||||||
+    // ||||||||||||||||||||||||||||     INICIA LSOS      ||||||||||||||||||||||||||||
+//        ListaSO_S lsos = new ListaSO_S();
+//        lsos.insertar(new NodoSO_S(new Salon(110, "T4", 200)));
+//        lsos.insertar(new NodoSO_S(new Salon(210, "T4", 200)));
+//        lsos.insertar(new NodoSO_S(new Salon(310, "T4", 200)));
+//        lsos.insertar(new NodoSO_S(new Salon(410, "T4", 200)));
+//        lsos.insertar(new NodoSO_S(new Salon(114, "T4", 200)));
+//        lsos.insertar(new NodoSO_S(new Salon(305, "T4", 200)));
+//        lsos.mostrar();
+//        lsos.modificar(310, "T44", 450);
+//        lsos.eliminar(110);
+//        lsos.eliminar(305);
+//        lsos.eliminar(410);
+//        lsos.mostrar();
+//        lsos.graficar("grafo");
+    // ||||||||||||||||||||||||||||     FIN LSOS         ||||||||||||||||||||||||||||
+    // ||||||||||||||||||||||||||||     INICIA LSOC      ||||||||||||||||||||||||||||
+//        ListaSO_C lsoc = new ListaSO_C();
+//        lsoc.insertar(new NodoSO_C(new Curso(769, "EDD", 5, 5)));
+//        lsoc.insertar(new NodoSO_C(new Curso(69, "COMPI1", 5, 5)));
+//        lsoc.insertar(new NodoSO_C(new Curso(234, "Filosofia", 3, 5)));
+//        lsoc.insertar(new NodoSO_C(new Curso(777, "IPC2", 3, 5)));
+//        lsoc.insertar(new NodoSO_C(new Curso(937, "MA5", 6, 5)));
+//        lsoc.mostrar();
+//        lsoc.modificar(69, "Compiladores 1", 4, 6);
+//        lsoc.eliminar(69);
+//        lsoc.eliminar(769);
+//        lsoc.eliminar(937);
+//        lsoc.mostrar();
+//        lsoc.graficar("grafo");
+    // ||||||||||||||||||||||||||||     FIN LSOC         ||||||||||||||||||||||||||||
+    // ||||||||||||||||||||||||||||     INICIA LS      ||||||||||||||||||||||||||||
+//        ListaS lsa  = new ListaS();
+//        lsa.insertar(new NodoS(new Asignacion(20138821, 455, 45, 20)));
+//        lsa.insertar(new NodoS(new Asignacion(20138821, 777, 65, 20)));
+//        lsa.insertar(new NodoS(new Asignacion(20148821, 23, 75, 20)));
+//        lsa.insertar(new NodoS(new Asignacion(20158821, 21, 37, 20)));
+//        lsa.insertar(new NodoS(new Asignacion(20168821, 655, 40, 20)));
+//        lsa.insertar(new NodoS(new Asignacion(20178821, 655, 40, 20)));
+//        lsa.insertar(new NodoS(new Asignacion(20188821, 655, 40, 20)));
+//        lsa.mostrar();
+////        lsa.eliminar(20138821);
+//        lsa.eliminar(20158821);
+//        lsa.eliminar(20188821);
+//        lsa.modificar(20138821, 666, 75, 25);
+//        lsa.mostrar();
+//        lsa.graficar("grafo");
+    // ||||||||||||||||||||||||||||     FIN LS         ||||||||||||||||||||||||||||
 // ::::::::::::::::::::::::::::::::     FIN TEST    ::::::::::::::::::::::::::::::::
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
