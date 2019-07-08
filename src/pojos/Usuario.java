@@ -13,7 +13,7 @@ public class Usuario {
     private int id;
     private String nombre;
     private String contrasena;
-    private String tipo;
+    private String tipo; // Estudiante || Colaborador
 
     public Usuario(int id, String nombre, String contrasena, String tipo) {
         this.id = id;

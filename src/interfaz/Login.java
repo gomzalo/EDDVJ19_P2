@@ -16,11 +16,13 @@ import estructuras.listas.simples.ordenada.ListaSO_C;
 import estructuras.listas.simples.ordenada.ListaSO_S;
 import estructuras.listas.simples.ordenada.NodoSO_C;
 import estructuras.listas.simples.ordenada.NodoSO_S;
+import estructuras.tabla.hash.TablaHash;
 import java.io.IOException;
 import pojos.Asignacion;
 import pojos.Catedratico;
 import pojos.Curso;
 import pojos.Edificio;
+import pojos.Estudiante;
 import pojos.Salon;
 import pojos.Usuario;
 
@@ -169,6 +171,14 @@ public class Login extends javax.swing.JFrame {
 //        lsa.mostrar();
 //        lsa.graficar("grafo");
     // ||||||||||||||||||||||||||||     FIN LS         ||||||||||||||||||||||||||||
+    // ||||||||||||||||||||||||||||     INICIA TH      ||||||||||||||||||||||||||||
+        TablaHash tht = new TablaHash();
+        for (int i = 0; i < 50; i++) {
+            tht.insertar(new Estudiante(2013185+i, "Julia", "Z4"));
+        }
+        
+        tht.mostrar();
+    // ||||||||||||||||||||||||||||     FIN TH         ||||||||||||||||||||||||||||
 // ::::::::::::::::::::::::::::::::     FIN TEST    ::::::::::::::::::::::::::::::::
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

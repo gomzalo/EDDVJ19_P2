@@ -151,7 +151,7 @@ public class ListaS {
         System.out.println("Se muestra la grafica de las asignaciones en la lista simple:");
         String nombre = "lista_simple_asignaciones";
         String dot_subgrafo_lista_simple_asignaciones =
-        "\n\t\tsubgraph cluster_lista_simple_asignaciones"
+        "\n\tsubgraph cluster_lista_simple_asignaciones"
         +   "\n\t{"
         +   "\n"
         +   "\n\t\tgraph[color = \"white:gray\", fontcolor = \"black\", style = filled, fontsize = 7, label = \"Asignaciones\"];"
@@ -191,7 +191,7 @@ public class ListaS {
             NodoS auxiliar_enlaces = inicio;
             while(auxiliar_enlaces.getSiguiente() != null) {
                 // -------------------  Enlaces   	-------------------
-            	dot += "\n\t\t\t" + _id + auxiliar_enlaces.getAsignacion().getCarnet()+ "->" 
+            	dot += "\n\t\t" + _id + auxiliar_enlaces.getAsignacion().getCarnet()+ "->" 
                     + _id + auxiliar_enlaces.getSiguiente().getAsignacion().getCarnet();
             	auxiliar_enlaces = auxiliar_enlaces.getSiguiente();
             }
