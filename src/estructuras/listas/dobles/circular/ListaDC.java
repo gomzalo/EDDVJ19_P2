@@ -229,7 +229,7 @@ public class ListaDC {
         +   "\n\t{"
         +   "\n"
         +       "\n\t\tgraph[color = \"cornflowerblue:darkslateblue\", fontcolor = \"black\", fontname = serif, style = filled, label = \"Edificios\", rankdir = \"LR\"];"
-        +       "\n\t\tnode[shape = tripleoctagon, style = filled, color = cyan1, fillcolor = ghostwhite, fontcolor = black, peripheries = 2];"
+        +       "\n\t\tnode[shape = box3d, style = filled, color = cyan1, fillcolor = ghostwhite, fontcolor = black, peripheries = 2];"
         + 	"\n\t\tedge[color = \"blue:grey100:greenyellow\"];"
         + 	"\n"
         + 	"\n"

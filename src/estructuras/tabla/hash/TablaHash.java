@@ -5,6 +5,8 @@
  */
 package estructuras.tabla.hash;
 
+import archivos.Escritura;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import pojos.Estudiante;
@@ -76,7 +78,7 @@ public class TablaHash {
             for (int i = 0; i < this.tabla.length - 1; i++) {
                 if(tabla[i] != null){
 //                    System.out.println("Carnet: " + tabla[i].getCarnet() + " (pos = " + i + ")");
-                    System.out.println("i: " + i + ", " + tabla[i].getCarnet() + " ");
+                    System.out.println("i: " + i + ", " + tabla[i].getCarnet() + ", nombre: " + tabla[i].getNombre());
                 }else{
                     System.out.println("i: " + i + ", 0 ");
                 }
@@ -141,6 +143,120 @@ public class TablaHash {
         for(; !esPrimo(numMinimo); numMinimo += 2);
         
         return numMinimo;
+    }
+    
+    public Estudiante buscar(int carnet){
+        int indice = funcionHash(carnet);
+        if(this.tabla.length > 0){
+            for (int i = 0; i < this.tabla.length - 1; i++) {
+                if(i == indice){
+                    if(tabla[i] != null){
+                        return tabla[i];
+                    }else{
+                        return null;
+                    }
+                }
+            }
+        }else{
+            System.out.println("Tabla vacia.");
+        }
+        return null;
+    }
+    
+    public void modificar(int carnet, String nuevo_nombre, String nueva_direccion){
+        if(buscar(carnet) != null){
+            buscar(carnet).setNombre(nuevo_nombre);
+            buscar(carnet).setDireccion(nueva_direccion);
+            System.out.println("Se ha modificado el carnet: " +  carnet + 
+            ", por nombre: " + nuevo_nombre + ", direccion: " + nueva_direccion + ".");
+        }else{
+            System.out.println("No existe tal carnet en la tabla.");
+        }
+    }
+    
+    public void eliminar(int carnet){
+        int indice = funcionHash(carnet);
+        if(this.tabla.length > 0){
+            for (int i = 0; i < this.tabla.length - 1; i++) {
+                if(i == indice){
+                    tabla[i] = null;
+                    System.out.println("Se ha eliminado el carnet: " + carnet + ".");
+                    N--;
+                }
+            }
+        }else{
+            System.out.println("Tabla vacia.");
+        }
+    }
+    
+    public String graficar(String opcion) throws IOException, InterruptedException{
+        System.out.println("Se muestra la grafica de los estudiantes en la tabla hash:");
+        String nombre = "tabla_hash";
+        String dot_subgrafo_tabla_hash_estudiantes =
+         	"\n\tsubgraph cluster_tabla_hash_estudiantes"
+            + 	"\n\t{"
+            +   "\n"
+            +   "\n\t\tgraph[color = \"grey19:grey6\", fontcolor = \"white\", fontname = serif, style = filled, label = \"Estudiantes\"];"
+            + 	"\n\t\tnode[shape = record, style = filled, color = black, fillcolor = \"white:seagreen1\", fontcolor = black, peripheries = 2];"
+            + 	"\n\t\tedge[color = \"aquamarine:white:blue\"];"
+            + 	"\n"
+            + 	"\n"
+                +   generarDot("estudiante_")
+            +	"\n\t}";
+        if(opcion.equals("grafo")){
+            String dot_grafo_tabla_hash_estudiantes =
+            "digraph tabla_hash_estudiantes"
+            +   "\n{"
+                + "rankdir=\"LR\""
+                +   dot_subgrafo_tabla_hash_estudiantes    
+            +   "\n}";
+            Escritura.escribirArchivoDot(nombre, dot_grafo_tabla_hash_estudiantes);
+            Escritura.generarImagenDot(nombre);
+            return "";
+        }else if(opcion.equals("subgrafo")){
+            return dot_subgrafo_tabla_hash_estudiantes;
+        }
+        return "";
+    }
+    
+    public String generarDot(String _id){
+        String dot = "";
+        if(this.tabla.length > 0){
+             // ----------------------	Llenando tabla				----------------------
+            dot += "\t\tTABLAHASH  [label = \"";
+            int length = this.tabla.length - 1;
+            for (int i = 0; i <= length; i++) {
+                dot += "<p" + i + "> " + i;
+                if (i != length) {
+                    dot += "|";
+                }
+            }
+
+            dot +=  "\""
+                +   "];"
+                +   "\n";
+            
+            // ----------------------	Contendio					----------------------
+            for (Estudiante estudiantes_auxiliar : this.tabla) {
+                if (estudiantes_auxiliar != null) {
+                    dot +=  estudiantes_auxiliar.getContenido(_id);
+                }
+            }
+            dot += 	"\n"
+                + 	"\n";
+        
+            // ----------------------	Enlaces de tabla a nodos	----------------------
+            for (int i = 0; i <= length; i++) {
+                Estudiante estudiante_auxiliar = this.tabla[i];
+                if (estudiante_auxiliar != null) {
+                    dot += 	"\t\tTABLAHASH:p" + i + " -> prod" + _id + estudiante_auxiliar.getCarnet()+ ";"
+                            + 	"\n";
+                }
+            }
+        }else{
+            System.err.println("Tabla vacia, nada que graficar.");
+        }
+        return dot;
     }
     
 }

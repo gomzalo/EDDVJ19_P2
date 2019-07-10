@@ -45,7 +45,7 @@ public class NodoSO_S {
                 +   "<"
                 +   " Numero: " + this.getSalon().getNumero()
                 +   " <BR /> "
-                    +   "<FONT POINT-SIZE = \"9\">"
+                    +   "<FONT POINT-SIZE = \"10\">"
                     +   " <BR /> "
                     +   "Nombre edificio: " + this.getSalon().getNombre_edificio()
                     +   " <BR /> "

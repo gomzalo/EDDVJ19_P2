@@ -6,6 +6,7 @@
 package interfaz;
 
 import estructuras.arboles.avl.ArbolAVL;
+import estructuras.arboles.b.ArbolB;
 import estructuras.listas.dobles.circular.ListaDC;
 import estructuras.listas.dobles.circular.NodoDC;
 import estructuras.listas.dobles.ordenada.ListaDO;
@@ -23,6 +24,7 @@ import pojos.Catedratico;
 import pojos.Curso;
 import pojos.Edificio;
 import pojos.Estudiante;
+import pojos.Horario;
 import pojos.Salon;
 import pojos.Usuario;
 
@@ -172,13 +174,38 @@ public class Login extends javax.swing.JFrame {
 //        lsa.graficar("grafo");
     // ||||||||||||||||||||||||||||     FIN LS         ||||||||||||||||||||||||||||
     // ||||||||||||||||||||||||||||     INICIA TH      ||||||||||||||||||||||||||||
-        TablaHash tht = new TablaHash();
-        for (int i = 0; i < 50; i++) {
-            tht.insertar(new Estudiante(2013185+i, "Julia", "Z4"));
-        }
-        
-        tht.mostrar();
+//        TablaHash tht = new TablaHash();
+////        for (int i = 0; i < 50; i++) {
+//            tht.insertar(new Estudiante(20131855, "Julia", "Z4"));
+//            tht.insertar(new Estudiante(20131851, "Julia", "Z4"));
+//            tht.insertar(new Estudiante(20131852, "Julia", "Z4"));
+//            tht.insertar(new Estudiante(20131835, "Julia", "Z4"));
+//            tht.insertar(new Estudiante(20131854, "Julia", "Z4"));
+//            tht.insertar(new Estudiante(20131858, "Julia", "Z4"));
+////        }
+//        
+//        tht.modificar(20131855, "Julio", "Z9");
+//        tht.eliminar(20131858);
+//        tht.graficar("grafo");
+//        
+//        tht.mostrar();
     // ||||||||||||||||||||||||||||     FIN TH         ||||||||||||||||||||||||||||
+    // ||||||||||||||||||||||||||||     INICIA B      ||||||||||||||||||||||||||||
+        ArbolB<Horario> bt= new ArbolB<Horario>(5);
+        bt.Insertar(new Horario(1, 23, 44, 33, 20, "12:43", "Lunes"));
+        bt.Insertar(new Horario(2, 24, 45, 34, 21, "12:43", "Martes"));
+        bt.Insertar(new Horario(3, 25, 46, 63, 22, "12:43", "Sabado"));
+        bt.Insertar(new Horario(4, 26, 47, 64, 23, "12:43", "Domingo"));
+        bt.Insertar(new Horario(5, 27, 48, 65, 24, "12:43", "lunes"));
+        bt.Insertar(new Horario(6, 28, 49, 66, 25, "12:43", "urtio"));
+        bt.Insertar(new Horario(7, 29, 00, 67, 26, "12:43", "Sabado"));
+        bt.Insertar(new Horario(17, 29, 00, 67, 26, "12:43", "Sabado"));
+        bt.Insertar(new Horario(67, 29, 00, 67, 26, "12:43", "Sabado"));
+        System.out.println("Buscando por codigo");
+        System.out.println("\nCodigo encontrado: " + bt.buscarPorParametro(4).getHorario().getCodigo() + "\n");
+        bt.Imprimir();
+        bt.graficar("grafo");
+    // ||||||||||||||||||||||||||||     FIN B         ||||||||||||||||||||||||||||
 // ::::::::::::::::::::::::::::::::     FIN TEST    ::::::::::::::::::::::::::::::::
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

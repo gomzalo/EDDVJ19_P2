@@ -176,9 +176,9 @@ public class ListaSO_S {
              	"\n\tsubgraph cluster_lista_simple_ordenada_salones"
             + 	"\n\t{"
             +   "\n"
-            +   "\n\t\tgraph[color = \"indigo:hotpink2\", fontcolor = \"white\", fontname = serif, style = filled, label = \"Salones\"];"
-            + 	"\n\t\tnode[shape = tripleoctagon, style = filled, color = white, fillcolor = black, fontcolor = white, peripheries = 2];"
-            + 	"\n\t\tedge[color = \"purple:grey\"];"
+            +   "\n\t\tgraph[color = \"crimson:firebrick3\", fontcolor = \"white\", fontname = serif, style = filled, label = \"Salones\"];"
+            + 	"\n\t\tnode[shape = house, style = filled, color = white, fillcolor = \"honeydew4:azure\", fontcolor = red3, peripheries = 2];"
+            + 	"\n\t\tedge[color = \"teal:paleturquoise\"];"
             + 	"\n"
             + 	"\n"
                 +   generarDot("salon_")

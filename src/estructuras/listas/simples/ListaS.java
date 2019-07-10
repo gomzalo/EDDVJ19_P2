@@ -154,9 +154,9 @@ public class ListaS {
         "\n\tsubgraph cluster_lista_simple_asignaciones"
         +   "\n\t{"
         +   "\n"
-        +   "\n\t\tgraph[color = \"white:gray\", fontcolor = \"black\", style = filled, fontsize = 7, label = \"Asignaciones\"];"
-        +   "\n\t\tnode[shape = tripleoctagon, style = filled, color = white, fillcolor = black, fontcolor = white, peripheries = 2];"
-        +   "\n\t\tedge[color = \"purple:grey\"];"
+        +   "\n\t\tgraph[color = \"white:gray\", fontcolor = \"black\", style = filled, label = \"Asignaciones\"];"
+        +   "\n\t\tnode[shape = component, style = filled, color = lightsalmon4, fillcolor = \"thistle:slateblue2\", fontcolor = black, peripheries = 2];"
+        +   "\n\t\tedge[color = \"olivedrab1:grey:navyblue\"];"
         +   "\n"
         +   "\n"
             +   generarDot("asignaciones_")

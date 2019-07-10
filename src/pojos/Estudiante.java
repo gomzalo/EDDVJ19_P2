@@ -47,11 +47,10 @@ public class Estudiante {
     public String getContenido(String _id){
         String contenido = "";
             contenido +=
-                "\t\t" + _id + this.getCarnet()
+                "\t\tprod" + _id + this.getCarnet()
             +   "[label = "
                 +   "<"
                 +   " Carnet: " + this.getCarnet()
-                +   " <BR /> "
                     +   "<FONT POINT-SIZE = \"9\">"
                     +   " <BR /> "
                     +   "Nombre: " + this.getNombre()
@@ -59,7 +58,7 @@ public class Estudiante {
                     +   "Direccion: " + this.getDireccion()
                     +   " </FONT>"
                 +   ">"
-            +   "]"
+            +   ", fillcolor = \"paleturquoise:white\"]"
             +   "\n";
         return contenido;
     }

@@ -366,7 +366,7 @@ public class ArbolAVL {
     
     public String graficar(String opcion) throws IOException, InterruptedException{
         System.out.println("Se muestra la grafica de los catedraticos en el arbol AVL:");
-        String nombre = "arbolAVL";
+        String nombre = "arbol_avl";
         String dot_subgrafo_arbol_avl =
             "\n\tsubgraph cluster_avl"
         +   "\n\t{"
