@@ -32,7 +32,8 @@ public class PaginaB<T> {
             NodoB<Horario> temporal=nuevo;
             for (int i = 0; i <= tam; i++) {
                 if(llaves[i] != null){
-                    if(temporal.getLlave().compareTo(llaves[i].getLlave()) < 0 ){//si toca insertar al NUEVO en ese lugar
+//                    if(temporal.getLlave().compareTo(llaves[i].getLlave()) < 0 ){//si toca insertar al NUEVO en ese lugar
+                    if(temporal.getLlave() < llaves[i].getLlave()){//si toca insertar al NUEVO en ese lugar
                         NodoB<Horario> temporal2= llaves[i];
                         llaves[i] = temporal;
                         temporal = temporal2;
@@ -136,10 +137,11 @@ public class PaginaB<T> {
         }
     }
     
-    public int buscarIndice(String llave){
+    public int buscarIndice(int llave){
         for (int i = 0; i < llenura; i++) {
             if(llaves[i] != null){
-            	if(llaves[i].getLlave().compareTo(llave) > 0){
+//            	if(llaves[i].getLlave().compareTo(llave) > 0){
+            	if(llaves[i].getLlave() > llave){
                     return i;
                 }
             }

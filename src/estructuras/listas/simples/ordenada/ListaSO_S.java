@@ -169,11 +169,11 @@ public class ListaSO_S {
         return null;
     }
     
-    public String graficar(String opcion) throws IOException, InterruptedException{
+    public String graficar(String opcion, String id_edificio) throws IOException, InterruptedException{
         System.out.println("Se muestra la grafica de los salones en la lista simple ordenada:");
         String nombre = "lista_simple_ordenada_salones";
         String dot_subgrafo_lista_simple_ordenada_salones =
-             	"\n\tsubgraph cluster_lista_simple_ordenada_salones"
+             	"\n\tsubgraph cluster_lista_simple_ordenada_salones_" + id_edificio
             + 	"\n\t{"
             +   "\n"
             +   "\n\t\tgraph[color = \"crimson:firebrick3\", fontcolor = \"white\", fontname = serif, style = filled, label = \"Salones\"];"
@@ -181,12 +181,12 @@ public class ListaSO_S {
             + 	"\n\t\tedge[color = \"teal:paleturquoise\"];"
             + 	"\n"
             + 	"\n"
-                +   generarDot("salon_")
+                +   generarDot(id_edificio + "_salon_")
             +	"\n\t}";
         
         if(opcion.equals("grafo")){
             String dot_grafo_lista_simple_ordenada_salones =
-            "digraph lista_simple_ordenada_salones"
+            "digraph lista_simple_ordenada_salones_" + id_edificio
             +   "\n{"
                 +   dot_subgrafo_lista_simple_ordenada_salones    
             +   "\n}";

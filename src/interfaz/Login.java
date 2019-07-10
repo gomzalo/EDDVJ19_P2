@@ -19,6 +19,7 @@ import estructuras.listas.simples.ordenada.NodoSO_C;
 import estructuras.listas.simples.ordenada.NodoSO_S;
 import estructuras.tabla.hash.TablaHash;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 import pojos.Asignacion;
 import pojos.Catedratico;
 import pojos.Curso;
@@ -50,21 +51,94 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        login_titulo_lb = new javax.swing.JLabel();
+        usuario_txt = new javax.swing.JTextField();
+        contrasena_txt = new javax.swing.JTextField();
+        id_usuario_lb = new javax.swing.JLabel();
+        contrasena_usaurio_lb = new javax.swing.JLabel();
+        login_bt = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
+
+        login_titulo_lb.setFont(new java.awt.Font("DejaVu Sans", 0, 24)); // NOI18N
+        login_titulo_lb.setText("¡Bienvenido!");
+
+        usuario_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuario_txtActionPerformed(evt);
+            }
+        });
+
+        id_usuario_lb.setText("Ingresa tu codigo de usuario");
+
+        contrasena_usaurio_lb.setText("Ingresa tu contraseña");
+
+        login_bt.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        login_bt.setText("Login");
+        login_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                login_btActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(login_titulo_lb)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(113, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(contrasena_usaurio_lb)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(contrasena_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(usuario_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(id_usuario_lb, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(97, 97, 97))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(login_bt)
+                        .addGap(172, 172, 172))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(login_titulo_lb)
+                .addGap(25, 25, 25)
+                .addComponent(id_usuario_lb)
+                .addGap(18, 18, 18)
+                .addComponent(usuario_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(contrasena_usaurio_lb)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(contrasena_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(login_bt)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void usuario_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuario_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usuario_txtActionPerformed
+
+    private void login_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btActionPerformed
+        // TODO add your handling code here:
+        if(usuario_txt.getText().equals("root") && 
+            contrasena_txt.getText().equals("root")){
+            JOptionPane.showMessageDialog(null, "Bienvenido super usuario ggg");
+            this.setVisible(false);
+            new Carga().setVisible(true);
+        }
+    }//GEN-LAST:event_login_btActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,17 +160,33 @@ public class Login extends javax.swing.JFrame {
 //        catest.inorder();
 //        catest.graficar("grafo");
     // ||||||||||||||||||||||||||||     FIN AVL         ||||||||||||||||||||||||||||
+       // ||||||||||||||||||||||||||||     INICIA LSOS      ||||||||||||||||||||||||||||
+//        ListaSO_S lsos = new ListaSO_S();
+//        lsos.insertar(new NodoSO_S(new Salon(110, "T4", 200)));
+//        lsos.insertar(new NodoSO_S(new Salon(210, "T4", 200)));
+//        lsos.insertar(new NodoSO_S(new Salon(310, "T4", 200)));
+//        lsos.insertar(new NodoSO_S(new Salon(410, "T4", 200)));
+//        lsos.insertar(new NodoSO_S(new Salon(114, "T4", 200)));
+//        lsos.insertar(new NodoSO_S(new Salon(305, "T4", 200)));
+//        lsos.mostrar();
+//        lsos.modificar(310, "T44", 450);
+//        lsos.eliminar(110);
+//        lsos.eliminar(305);
+//        lsos.eliminar(410);
+//        lsos.mostrar();
+//        lsos.graficar("grafo");
+    // ||||||||||||||||||||||||||||     FIN LSOS         ||||||||||||||||||||||||||||
     // ||||||||||||||||||||||||||||     INICIA LDC      ||||||||||||||||||||||||||||
 //        ListaDC ldc = new ListaDC();
-//        ldc.insertar(new NodoDC(new Edificio("T1")));
-//        ldc.insertar(new NodoDC(new Edificio("T1")));
-//        ldc.insertar(new NodoDC(new Edificio("T3")));
-//        ldc.insertar(new NodoDC(new Edificio("S11")));
-//        ldc.insertar(new NodoDC(new Edificio("T7")));
-//        ldc.insertar(new NodoDC(new Edificio("T9")));
-//        ldc.insertar(new NodoDC(new Edificio("M2")));
-//        ldc.insertar(new NodoDC(new Edificio("Biblioteca central")));
-//        ldc.insertar(new NodoDC(new Edificio("Iglu")));
+//        ldc.insertar(new NodoDC(new Edificio("T1"), null));
+//        ldc.insertar(new NodoDC(new Edificio("T1"), null));
+//        ldc.insertar(new NodoDC(new Edificio("T3"), null));
+//        ldc.insertar(new NodoDC(new Edificio("S11"), lsos));
+//        ldc.insertar(new NodoDC(new Edificio("T7"), null));
+//        ldc.insertar(new NodoDC(new Edificio("T9"), null));
+//        ldc.insertar(new NodoDC(new Edificio("M2"), null));
+//        ldc.insertar(new NodoDC(new Edificio("Biblioteca central"), null));
+//        ldc.insertar(new NodoDC(new Edificio("Iglu"), lsos));
 //        ldc.mostrar();
 //        ldc.eliminar("Biblioteca central");
 //        ldc.eliminar("S11");
@@ -125,22 +215,6 @@ public class Login extends javax.swing.JFrame {
 //        ldo.mostrar();        
 //        ldo.graficar("grafo");
     // ||||||||||||||||||||||||||||     FIN LDO         ||||||||||||||||||||||||||||
-    // ||||||||||||||||||||||||||||     INICIA LSOS      ||||||||||||||||||||||||||||
-//        ListaSO_S lsos = new ListaSO_S();
-//        lsos.insertar(new NodoSO_S(new Salon(110, "T4", 200)));
-//        lsos.insertar(new NodoSO_S(new Salon(210, "T4", 200)));
-//        lsos.insertar(new NodoSO_S(new Salon(310, "T4", 200)));
-//        lsos.insertar(new NodoSO_S(new Salon(410, "T4", 200)));
-//        lsos.insertar(new NodoSO_S(new Salon(114, "T4", 200)));
-//        lsos.insertar(new NodoSO_S(new Salon(305, "T4", 200)));
-//        lsos.mostrar();
-//        lsos.modificar(310, "T44", 450);
-//        lsos.eliminar(110);
-//        lsos.eliminar(305);
-//        lsos.eliminar(410);
-//        lsos.mostrar();
-//        lsos.graficar("grafo");
-    // ||||||||||||||||||||||||||||     FIN LSOS         ||||||||||||||||||||||||||||
     // ||||||||||||||||||||||||||||     INICIA LSOC      ||||||||||||||||||||||||||||
 //        ListaSO_C lsoc = new ListaSO_C();
 //        lsoc.insertar(new NodoSO_C(new Curso(769, "EDD", 5, 5)));
@@ -171,7 +245,7 @@ public class Login extends javax.swing.JFrame {
 //        lsa.eliminar(20188821);
 //        lsa.modificar(20138821, 666, 75, 25);
 //        lsa.mostrar();
-//        lsa.graficar("grafo");
+////        lsa.graficar("grafo");
     // ||||||||||||||||||||||||||||     FIN LS         ||||||||||||||||||||||||||||
     // ||||||||||||||||||||||||||||     INICIA TH      ||||||||||||||||||||||||||||
 //        TablaHash tht = new TablaHash();
@@ -191,20 +265,33 @@ public class Login extends javax.swing.JFrame {
 //        tht.mostrar();
     // ||||||||||||||||||||||||||||     FIN TH         ||||||||||||||||||||||||||||
     // ||||||||||||||||||||||||||||     INICIA B      ||||||||||||||||||||||||||||
-        ArbolB<Horario> bt= new ArbolB<Horario>(5);
-        bt.Insertar(new Horario(1, 23, 44, 33, 20, "12:43", "Lunes"));
-        bt.Insertar(new Horario(2, 24, 45, 34, 21, "12:43", "Martes"));
-        bt.Insertar(new Horario(3, 25, 46, 63, 22, "12:43", "Sabado"));
-        bt.Insertar(new Horario(4, 26, 47, 64, 23, "12:43", "Domingo"));
-        bt.Insertar(new Horario(5, 27, 48, 65, 24, "12:43", "lunes"));
-        bt.Insertar(new Horario(6, 28, 49, 66, 25, "12:43", "urtio"));
-        bt.Insertar(new Horario(7, 29, 00, 67, 26, "12:43", "Sabado"));
-        bt.Insertar(new Horario(17, 29, 00, 67, 26, "12:43", "Sabado"));
-        bt.Insertar(new Horario(67, 29, 00, 67, 26, "12:43", "Sabado"));
-        System.out.println("Buscando por codigo");
-        System.out.println("\nCodigo encontrado: " + bt.buscarPorParametro(4).getHorario().getCodigo() + "\n");
-        bt.Imprimir();
-        bt.graficar("grafo");
+//        ArbolB<Horario> bt= new ArbolB<Horario>(5);
+//        bt.Insertar(new Horario(1, 23, 44, 33, 20, "12:43", "Lunes"), null);
+//        bt.Insertar(new Horario(2, 24, 45, 34, 21, "12:43", "Martes"), null);
+//        bt.Insertar(new Horario(3, 25, 46, 63, 22, "12:43", "Sabado"), lsa);
+//        bt.Insertar(new Horario(4, 26, 47, 64, 23, "12:43", "Domingo"), null);
+//        bt.Insertar(new Horario(5, 27, 48, 65, 24, "12:43", "lunes"), null);
+//        bt.Insertar(new Horario(6, 28, 49, 66, 25, "12:43", "urtio"), null);
+//        bt.Insertar(new Horario(7, 29, 00, 67, 26, "12:43", "Sabado"), null);
+//        bt.Insertar(new Horario(17, 29, 00, 67, 26, "12:43", "Sabado"), lsa);
+////        bt.Insertar(new Horario(67, 29, 00, 67, 26, "12:43", "Sabado"), lsa);
+//        System.out.println("Buscando por codigo");
+//        System.out.println("\nCodigo encontrado: " + bt.buscarPorParametro(4).getHorario().getCodigo() + "\n");
+//        bt.Imprimir();
+////        bt.graficar("grafo");
+//        estructuras.Estructuras.b_horarios.Insertar(new Horario(1, 23, 44, 33, 20, "12:43", "Lunes"), null);
+//        estructuras.Estructuras.b_horarios.Insertar(new Horario(2, 24, 45, 34, 21, "12:43", "Martes"), null);
+//        estructuras.Estructuras.b_horarios.Insertar(new Horario(3, 25, 46, 63, 22, "12:43", "Sabado"), lsa);
+//        estructuras.Estructuras.b_horarios.Insertar(new Horario(4, 26, 47, 64, 23, "12:43", "Domingo"), null);
+//        estructuras.Estructuras.b_horarios.Insertar(new Horario(5, 27, 48, 65, 24, "12:43", "lunes"), null);
+//        estructuras.Estructuras.b_horarios.Insertar(new Horario(6, 28, 49, 66, 25, "12:43", "urtio"), null);
+//        estructuras.Estructuras.b_horarios.Insertar(new Horario(7, 29, 00, 67, 26, "12:43", "Sabado"), null);
+//        estructuras.Estructuras.b_horarios.Insertar(new Horario(17, 29, 00, 67, 26, "12:43", "Sabado"), lsa);
+////        bt.Insertar(new Horario(67, 29, 00, 67, 26, "12:43", "Sabado"), lsa);
+//        System.out.println("Buscando por codigo");
+////        System.out.println("\nCodigo encontrado: " + bt.buscarPorParametro(4).getHorario().getCodigo() + "\n");
+//        estructuras.Estructuras.b_horarios.Imprimir();
+//        estructuras.Estructuras.b_horarios.graficar("grafo");
     // ||||||||||||||||||||||||||||     FIN B         ||||||||||||||||||||||||||||
 // ::::::::::::::::::::::::::::::::     FIN TEST    ::::::::::::::::::::::::::::::::
         /* Set the Nimbus look and feel */
@@ -239,5 +326,11 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField contrasena_txt;
+    private javax.swing.JLabel contrasena_usaurio_lb;
+    private javax.swing.JLabel id_usuario_lb;
+    private javax.swing.JButton login_bt;
+    private javax.swing.JLabel login_titulo_lb;
+    private javax.swing.JTextField usuario_txt;
     // End of variables declaration//GEN-END:variables
 }

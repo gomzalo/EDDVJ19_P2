@@ -11,6 +11,7 @@ import java.util.List;
 
 import pojos.Horario;
 import archivos.Escritura;
+import estructuras.listas.simples.ListaS;
 
 /**
  *
@@ -38,13 +39,13 @@ public class ArbolB<T> {
     	return raiz == null;
     }
     
-    public void Insertar(Horario nuevo_horario){
+    public void Insertar(Horario nuevo_horario, ListaS asignaciones){
         
 //        if(nuevo_horario != null){
 //            
 //        }
         //verificar si la raiz no es nula
-        PaginaB<T> retorno=Insertar(new NodoB<Horario>(nuevo_horario, String.valueOf(nuevo_horario.getCodigo())),raiz);
+        PaginaB<T> retorno=Insertar(new NodoB<Horario>(nuevo_horario, asignaciones, nuevo_horario.getCodigo()),raiz);
         if(retorno != null){
             raiz=retorno;
         }
@@ -207,7 +208,7 @@ public class ArbolB<T> {
 //    String enlacePrincipal = "";
 //    String t = "";
     
-    public String generarDot(){
+    public String generarDot() throws IOException, InterruptedException{
         //recursiva  
 //    	b_aux = "";
 //    	label = "";
@@ -219,8 +220,8 @@ public class ArbolB<T> {
         return generarDot(this.raiz);
     }
 
-    private String generarDot(PaginaB<T> pagina){
-        if(pagina!=null){
+    private String generarDot(PaginaB<T> pagina) throws IOException, InterruptedException{
+        if(pagina != null){
             
             String label = "[label = \"";
             String nodo = "\t\tNodo";
@@ -277,9 +278,41 @@ public class ArbolB<T> {
                     
                 }
             }
-            b_aux = nodo + texto + conexion;
+            
+            String asignaciones = "";
+            // Asignaciones
+            for (int i = 0; i < pagina.getLlaves().length; i++) {
+                if(pagina.getLlaves()[i] != null){
+                    // Verificando si tiene asignaciones
+                    if(pagina.getLlaves()[i].getAsignaciones() != null){
+                        System.out.println("Tiene asignaciones");
+                        // Obteniendo la grafica de la lista de asignacioens
+                        asignaciones += 
+                        pagina.getLlaves()[i].getAsignaciones().
+                        graficar("subgrafo", "horario_" + String.valueOf(pagina.getLlaves()[i].getLlave()))
+                        + "\n"
+                        + "\n";
+                        // Enlazando nodo actual con su lista de asignaciones
+                        String conexionn = "";
+                        String enlacePrincipal = generarTextoNodo(pagina);
+//                                        String t = generarTextoNodo(pagina.getHijos()[k]);
+                        conexionn += 
+                        enlacePrincipal + ":" + Integer.toString(i);
+
+                        asignaciones +=
+                        "\n\t\t" + conexionn 
+                        + "->" + "horario_" + pagina.getLlaves()[i].getLlave() + "_asignacion_"
+                        + pagina.getLlaves()[i].getAsignaciones().getInicio().getAsignacion().getCarnet()
+                        + "\n"
+                        + "\n";
+
+                    }
+                }
+            }    
+            
+            b_aux = nodo + texto + conexion + asignaciones;
             return b_aux;
-        }  
+        }
         
         return "";
     }

@@ -5,6 +5,7 @@
  */
 package estructuras.listas.dobles.circular;
 
+import estructuras.listas.simples.ordenada.ListaSO_S;
 import pojos.Edificio;
 
 /**
@@ -15,11 +16,19 @@ public class NodoDC {
     private NodoDC siguiente;
     private NodoDC anterior;
     private Edificio edificio;
+    private ListaSO_S salones;
 
-    public NodoDC(Edificio edificio) {
+//    public NodoDC(Edificio edificio) {
+//        this.siguiente = null;
+//        this.anterior = null;
+//        this.edificio = edificio;
+//    }
+    
+    public NodoDC(Edificio edificio, ListaSO_S salones) {
         this.siguiente = null;
         this.anterior = null;
         this.edificio = edificio;
+        this.salones = salones;
     }
 
     public NodoDC getSiguiente() {
@@ -45,7 +54,7 @@ public class NodoDC {
     public void setEdificio(Edificio edificio) {
         this.edificio = edificio;
     }
-
+   
     public String getContenido(String _id){
         String contenido = "";
         if(this.getEdificio()!= null){
@@ -61,6 +70,14 @@ public class NodoDC {
             +   "\n";
         }
         return contenido;
+    }
+
+    public ListaSO_S getSalones() {
+        return salones;
+    }
+
+    public void setSalones(ListaSO_S salones) {
+        this.salones = salones;
     }
     
 }

@@ -147,24 +147,24 @@ public class ListaS {
         }
     }
     
-    public String graficar(String opcion) throws IOException, InterruptedException{
+    public String graficar(String opcion, String id_horario) throws IOException, InterruptedException{
         System.out.println("Se muestra la grafica de las asignaciones en la lista simple:");
         String nombre = "lista_simple_asignaciones";
         String dot_subgrafo_lista_simple_asignaciones =
-        "\n\tsubgraph cluster_lista_simple_asignaciones"
+        "\n\tsubgraph cluster_lista_simple_asignaciones_" + id_horario
         +   "\n\t{"
         +   "\n"
-        +   "\n\t\tgraph[color = \"white:gray\", fontcolor = \"black\", style = filled, label = \"Asignaciones\"];"
-        +   "\n\t\tnode[shape = component, style = filled, color = lightsalmon4, fillcolor = \"thistle:slateblue2\", fontcolor = black, peripheries = 2];"
+        +   "\n\t\tgraph[color = \"white:aliceblue\", fontcolor = \"black\", style = filled, label = \"Asignaciones\"];"
+        +   "\n\t\tnode[shape = component, style = filled, color = lightsalmon4, fillcolor = \"invis:palegreen1\", fontcolor = black, peripheries = 2];"
         +   "\n\t\tedge[color = \"olivedrab1:grey:navyblue\"];"
         +   "\n"
         +   "\n"
-            +   generarDot("asignaciones_")
+            +   generarDot(id_horario + "_asignacion_")
         +   "\n\t}";
         
         if(opcion.equals("grafo")){
             String dot_grafo_lista_simple_asignaciones =
-            "digraph lista_simple_asignaciones"
+            "digraph lista_simple_asignaciones_" + id_horario
             +   "\n{"
                 +   dot_subgrafo_lista_simple_asignaciones    
             +   "\n}";

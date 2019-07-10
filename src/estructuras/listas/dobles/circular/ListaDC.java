@@ -251,7 +251,7 @@ public class ListaDC {
         return "";
     }
     
-    public String generarDot(String _id) throws IOException{
+    public String generarDot(String _id) throws IOException, InterruptedException{
         String dot = "";
         if(!esVacia()){
             NodoDC auxiliar_contenido = inicio;
@@ -260,11 +260,23 @@ public class ListaDC {
                 // Actual
                 dot += auxiliar_contenido.getContenido(_id);
                 auxiliar_contenido = auxiliar_contenido.getSiguiente();
+                // Salones
+                if(auxiliar_contenido.getSalones() != null){
+                    // Subgrafo
+                    dot += auxiliar_contenido.getSalones().graficar("subgrafo", auxiliar_contenido.getEdificio().getNombre());
+                    // Enlazando auxiliar_contenido a su lista de salones
+                    dot += 
+                    "\n\t\t" + _id + auxiliar_contenido.getEdificio().getNombre()
+                    + "->" + auxiliar_contenido.getEdificio().getNombre()
+                    + "_salon_" + auxiliar_contenido.getSalones().getInicio().getSalon().getNumero()
+                    + "\n"
+                    + "\n";
+                }
             }
             dot += auxiliar_contenido.getContenido(_id);
             
-//            dot += "\n\t\t{ 
-//            + "\n\t\trank = same ";
+            dot += "\n\t\t{ "
+            + "\n\t\trank = same ";
 
             NodoDC auxiliar_enlaces = inicio;
             while(auxiliar_enlaces.getSiguiente() != inicio) {
@@ -277,8 +289,8 @@ public class ListaDC {
             	auxiliar_enlaces = auxiliar_enlaces.getSiguiente();
             }
             
-//            dot +=  "\n\t\t}"
-//                +   "\n";
+            dot +=  "\n\t\t}"
+                +   "\n";
             dot +=  "\n";
             // -------------------  Enlaces al final  	-------------------
             dot += "\n\t\t" + _id + inicio.getEdificio().getNombre().replaceAll("\\s+", "") 
