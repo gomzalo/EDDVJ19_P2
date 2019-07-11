@@ -56,7 +56,6 @@ public class NodoDO {
                 +   " ID: " + this.getUsuario().getId()
                 +   " <BR /> "
                     +   "<FONT POINT-SIZE = \"9\">"
-                    +   " <BR /> "
                     +   "Nombre: " + this.getUsuario().getNombre()
                     +   " <BR /> "
                     +   "Contrasena: " + this.getUsuario().getContrasena()

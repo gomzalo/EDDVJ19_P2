@@ -14,12 +14,14 @@ public class Usuario {
     private String nombre;
     private String contrasena;
     private String tipo; // Estudiante || Colaborador
+    private Estudiante estudiante;
 
     public Usuario(int id, String nombre, String contrasena, String tipo) {
         this.id = id;
         this.nombre = nombre;
         this.contrasena = contrasena;
         this.tipo = tipo;
+        this.estudiante = null;
     }
 
     public String getTipo() {
@@ -52,6 +54,14 @@ public class Usuario {
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
     }
     
 }

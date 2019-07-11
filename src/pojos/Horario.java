@@ -11,21 +11,22 @@ package pojos;
  */
 public class Horario {
     private int codigo;
-    private int codigo_salon;
-    private int codigo_curso;
-    private int codigo_edificio;
-    private int num_identificacion;
     private String periodo;
     private String dia;
+    private int codigo_curso;
+    private int codigo_salon;
+    private String nombre_edificio;
+    private int id_catedratico;
+    
 
-    public Horario(int codigo, int codigo_salon, int codigo_curso, int codigo_edificio, int num_identificacion, String periodo, String dia) {
+    public Horario(int codigo, String periodo, String dia, int codigo_curso, int codigo_salon, String nombre_edificio, int id_catedratico) {
         this.codigo = codigo;
-        this.codigo_salon = codigo_salon;
-        this.codigo_curso = codigo_curso;
-        this.codigo_edificio = codigo_edificio;
-        this.num_identificacion = num_identificacion;
         this.periodo = periodo;
         this.dia = dia;
+        this.codigo_curso = codigo_curso;
+        this.codigo_salon = codigo_salon;
+        this.nombre_edificio = nombre_edificio;
+        this.id_catedratico = id_catedratico;
     }
 
     public String getDia() {
@@ -60,20 +61,20 @@ public class Horario {
         this.codigo_curso = codigo_curso;
     }
 
-    public int getCodigo_edificio() {
-        return codigo_edificio;
+    public String getNombre_edificio() {
+        return nombre_edificio;
     }
 
-    public void setCodigo_edificio(int codigo_edificio) {
-        this.codigo_edificio = codigo_edificio;
+    public void setNombre_edificio(String nombre_edificio) {
+        this.nombre_edificio = nombre_edificio;
     }
 
-    public int getNum_identificacion() {
-        return num_identificacion;
+    public int getId_catedratico() {
+        return id_catedratico;
     }
 
-    public void setNum_identificacion(int num_identificacion) {
-        this.num_identificacion = num_identificacion;
+    public void setId_catedratico(int id_catedratico) {
+        this.id_catedratico = id_catedratico;
     }
 
     public String getPeriodo() {
@@ -87,12 +88,12 @@ public class Horario {
     public String getContenido(){
         String contenido = "";
         contenido += "Codigo: "     + this.getCodigo()
-        + "\\nCodigo de salon: "    + this.getCodigo_salon()
-        + "\\nCodigo de curso: "    + this.getCodigo_curso()
-        + "\\nCodigo de edificio: " + this.getCodigo_edificio()
-        + "\\nNumero de ID: "       + this.getNum_identificacion()
         + "\\nPeriodo: "            + this.getPeriodo()
-        + "\\nDia: "                + this.getDia();
+        + "\\nDia: "                + this.getDia()
+        + "\\nCodigo de curso: "    + this.getCodigo_curso()
+        + "\\nCodigo de salon: "    + this.getCodigo_salon()
+        + "\\nCodigo de edificio: " + this.getNombre_edificio()
+        + "\\nID de catedratico: "  + this.getId_catedratico();
         return contenido;
     }
     

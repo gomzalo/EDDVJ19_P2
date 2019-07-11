@@ -48,11 +48,10 @@ public class NodoS {
                 "\t\t" + _id + this.getAsignacion().getCarnet()
             +   "[label = "
                 +   "<"
-                +   " Codigo: " + this.getAsignacion().getCarnet()
+                +   " Codigo horario: " + this.getAsignacion().getCodigo_horario()
                 +   " <BR /> "
                     +   "<FONT POINT-SIZE = \"9\">"
-                    +   " <BR /> "
-                    +   "Codigo curso: " + this.getAsignacion().getCodigo_curso()
+                    +   "Carnet: " + this.getAsignacion().getCarnet()
                     +   " <BR /> "
                     +   "Zona: " + this.getAsignacion().getZona()
                     +   " <BR /> "

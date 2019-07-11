@@ -48,7 +48,6 @@ public class NodoSO_C {
                 +   " Codigo: " + this.getCurso().getCodigo()
                 +   " <BR /> "
                     +   "<FONT POINT-SIZE = \"9\">"
-                    +   " <BR /> "
                     +   "Nombre: " + this.getCurso().getNombre()
                     +   " <BR /> "
                     +   "Semestre: " + this.getCurso().getSemestre()

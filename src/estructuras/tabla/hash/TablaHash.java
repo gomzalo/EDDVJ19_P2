@@ -45,7 +45,7 @@ public class TablaHash {
         
         for (int k = 0; k < tamano_tabla; k++) {
 //            System.out.println("i: " + i);
-            if(k == indice){
+//            if(k == indice){
                 if(tabla[indice] == null){
                     tabla[indice] = nuevo_estudiante;
                     System.out.println("La posicion i = " + k + ", (indice = " + indice + ")"
@@ -63,9 +63,9 @@ public class TablaHash {
                     i++;
                     return;
                 }
-            }
+//            }
         }
-         System.err.println("El estudiante con carnet: " + nuevo_estudiante.getCarnet()+ ", no pudo ser ingresado");
+        System.err.println("El estudiante con carnet: " + nuevo_estudiante.getCarnet()+ ", no pudo ser ingresado");
     }
     
     public int colision(int clave, int i){
@@ -88,6 +88,10 @@ public class TablaHash {
         }else{
             System.out.println("Tabla vacia.");
         }
+    }
+    
+    public int getTamano(){
+        return this.tabla.length;
     }
     
     public void reHash(){

@@ -13,11 +13,13 @@ public class Salon {
     private int numero;
     private String nombre_edificio;
     private int capacidad;
+    private int estudiantes_asignados;
 
     public Salon(int numero, String nombre_edificio, int capacidad) {
         this.numero = numero;
         this.nombre_edificio = nombre_edificio;
         this.capacidad = capacidad;
+        this.estudiantes_asignados = 0;
     }
 
     public int getCapacidad() {
@@ -42,6 +44,14 @@ public class Salon {
 
     public void setNombre_edificio(String nombre_edificio) {
         this.nombre_edificio = nombre_edificio;
+    }
+
+    public int getEstudiantes_asignados() {
+        return estudiantes_asignados;
+    }
+
+    public void setEstudiantes_asignados(int estudiantes_asignados) {
+        this.estudiantes_asignados = estudiantes_asignados;
     }
     
 }

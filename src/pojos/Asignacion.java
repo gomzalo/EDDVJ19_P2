@@ -11,13 +11,13 @@ package pojos;
  */
 public class Asignacion {
     private int carnet;
-    private int codigo_curso;
+    private int codigo_horario;
     private int zona;
     private int nota_final;
 
-    public Asignacion(int carnet, int codigo_curso, int zona, int nota_final) {
+    public Asignacion(int carnet, int codigo_horario, int zona, int nota_final) {
         this.carnet = carnet;
-        this.codigo_curso = codigo_curso;
+        this.codigo_horario = codigo_horario;
         this.zona = zona;
         this.nota_final = nota_final;
     }
@@ -38,12 +38,12 @@ public class Asignacion {
         this.carnet = carnet;
     }
 
-    public int getCodigo_curso() {
-        return codigo_curso;
+    public int getCodigo_horario() {
+        return codigo_horario;
     }
 
-    public void setCodigo_curso(int codigo_curso) {
-        this.codigo_curso = codigo_curso;
+    public void setCodigo_horario(int codigo_horario) {
+        this.codigo_horario = codigo_horario;
     }
 
     public int getZona() {

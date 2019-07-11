@@ -60,7 +60,7 @@ public class ListaS {
     public void modificar(int carnet, int nuevo_codigo_curso, int nueva_zona, int nuevo_final){
         if(buscar(carnet)){
 //            buscarNodo(numero).getSalon().setNombre_edificio(nuevo_nombre_edificio);
-            buscarNodo(carnet).getAsignacion().setCodigo_curso(nuevo_codigo_curso);
+            buscarNodo(carnet).getAsignacion().setCodigo_horario(nuevo_codigo_curso);
             buscarNodo(carnet).getAsignacion().setZona(nueva_zona);
             buscarNodo(carnet).getAsignacion().setNota_final(nuevo_final);
             System.out.println("Se ha modificado la asignacion del carnet: " + carnet + ", por: "

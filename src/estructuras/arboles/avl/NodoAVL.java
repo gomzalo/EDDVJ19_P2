@@ -73,7 +73,6 @@ public class NodoAVL {
                 +   " ID: " + this.getCatedratico().getId()
                 +   " <BR /> "
                     +   "<FONT POINT-SIZE = \"9\">"
-                    +   " <BR /> "
                     +   "Nombre: " + this.getCatedratico().getNombre()
                     +   " <BR /> "
                     +   "Direccion: " + this.getCatedratico().getDireccion()

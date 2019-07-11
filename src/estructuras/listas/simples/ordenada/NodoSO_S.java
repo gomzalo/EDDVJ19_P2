@@ -46,10 +46,11 @@ public class NodoSO_S {
                 +   " Numero: " + this.getSalon().getNumero()
                 +   " <BR /> "
                     +   "<FONT POINT-SIZE = \"10\">"
-                    +   " <BR /> "
                     +   "Nombre edificio: " + this.getSalon().getNombre_edificio()
                     +   " <BR /> "
                     +   "Capacidad: " + this.getSalon().getCapacidad()
+                    +   " <BR /> "
+                    +   "Cantidad de asignados: " + this.getSalon().getEstudiantes_asignados()
                     +   " </FONT>"
                 +   ">"
             +   "]"
