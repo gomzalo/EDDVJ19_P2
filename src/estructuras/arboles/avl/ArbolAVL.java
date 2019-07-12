@@ -263,13 +263,13 @@ public class ArbolAVL {
     }
     
     // Editar
-//    public void editar(String codigo_, Catedratico catedratico_nuevo) {
-    public void editar(int id, String nuevo_nombre, String nueva_direccion) {
-    	editar(id, nuevo_nombre, nueva_direccion, raiz);
+//    public void modificar(String codigo_, Catedratico catedratico_nuevo) {
+    public void modificar(int id, String nuevo_nombre, String nueva_direccion) {
+    	modificar(id, nuevo_nombre, nueva_direccion, raiz);
     }
     
-//    private void editar(String codigo_, Catedratico catedratico_nuevo, NodoAVL t) {
-    private void editar(int id, String nuevo_nombre, String nueva_direccion, NodoAVL t) {
+//    private void modificar(String codigo_, Catedratico catedratico_nuevo, NodoAVL t) {
+    private void modificar(int id, String nuevo_nombre, String nueva_direccion, NodoAVL t) {
     	if(t != null) {
 //            if(t.getCatedratico().getId().compareTo(codigo_) == 0) {
             if(id == t.getCatedratico().getId()) {
@@ -279,8 +279,8 @@ public class ArbolAVL {
                         + "\nnombre: " + nuevo_nombre + ", direccion: " + nueva_direccion + ".");
                 return;
             }
-            editar(id, nuevo_nombre, nueva_direccion, t.getIzquierda());
-            editar(id, nuevo_nombre, nueva_direccion, t.getDerecha());
+            modificar(id, nuevo_nombre, nueva_direccion, t.getIzquierda());
+            modificar(id, nuevo_nombre, nueva_direccion, t.getDerecha());
     	}
     }
 

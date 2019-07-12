@@ -11,6 +11,12 @@ import interfaz.colaborador.administradores.Usuarios;
 import interfaz.colaborador.administradores.Estudiantes;
 import estructuras.Estructuras;
 import interfaz.Login;
+import interfaz.colaborador.administradores.Asignaciones;
+import interfaz.colaborador.administradores.Catedraticos;
+import interfaz.colaborador.administradores.Horarios;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,7 +45,10 @@ public class AreaColaborador extends javax.swing.JFrame {
         info_area_colaborador_lb = new javax.swing.JLabel();
         administrar_btn = new javax.swing.JButton();
         administrar_cb = new javax.swing.JComboBox<>();
-        volver_bt = new javax.swing.JButton();
+        cerrar_sesion_bt = new javax.swing.JButton();
+        elige_grafica_lb = new javax.swing.JLabel();
+        grafica_cb = new javax.swing.JComboBox<>();
+        graficar_bt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Area de trabajo de colaborador");
@@ -56,12 +65,24 @@ public class AreaColaborador extends javax.swing.JFrame {
             }
         });
 
-        administrar_cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuarios", "Edificios", "Cursos", "Estudiantes", "Catedraticos", "Asignacion" }));
+        administrar_cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuarios", "Edificios", "Cursos", "Estudiantes", "Catedraticos", "Horarios", "Asignacion" }));
 
-        volver_bt.setText("Volver");
-        volver_bt.addActionListener(new java.awt.event.ActionListener() {
+        cerrar_sesion_bt.setText("Cerrar sesion");
+        cerrar_sesion_bt.setToolTipText("");
+        cerrar_sesion_bt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                volver_btActionPerformed(evt);
+                cerrar_sesion_btActionPerformed(evt);
+            }
+        });
+
+        elige_grafica_lb.setText("Elige la grafica que deseas visualizar");
+
+        grafica_cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todo", "Cursos asignados por estudiante", "Estudiantes asignados a un curso", "Cursos en un salon", "Estudiantes aprobados y reprobados" }));
+
+        graficar_bt.setText("Graficar");
+        graficar_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graficar_btActionPerformed(evt);
             }
         });
 
@@ -72,15 +93,20 @@ public class AreaColaborador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(volver_bt)
+                    .addComponent(cerrar_sesion_bt)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(elige_grafica_lb)
                         .addComponent(info_area_colaborador_lb)
                         .addComponent(titulo_area_colaborador_lb)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(administrar_cb, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(administrar_btn))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                            .addComponent(administrar_btn))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(grafica_cb, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(graficar_bt))))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,8 +119,14 @@ public class AreaColaborador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(administrar_btn)
                     .addComponent(administrar_cb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(volver_bt)
+                .addGap(18, 18, 18)
+                .addComponent(elige_grafica_lb)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(grafica_cb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(graficar_bt))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(cerrar_sesion_bt)
                 .addContainerGap())
         );
 
@@ -110,7 +142,7 @@ public class AreaColaborador extends javax.swing.JFrame {
             Cursos
             Estudiantes
             Catedraticos
-            Asignacion
+            Asignaciones
         */
         switch(administrar_elegido){
             case "Usuarios":
@@ -151,15 +183,26 @@ public class AreaColaborador extends javax.swing.JFrame {
                 break;
             case "Catedraticos":
                 if(!estructuras.Estructuras.avl_catedraticos.esVacio()){
-                    
+                    this.setVisible(false);
+                    new Catedraticos().setVisible(true);
                 }else{
                     JOptionPane.showMessageDialog(null, "¡No se han cargado los catedraticos!", 
                     "Atencion", JOptionPane.WARNING_MESSAGE);
                 }
                 break;
+            case "Horarios":
+                if(!estructuras.Estructuras.b_horarios.esVacio()){
+                    this.setVisible(false);
+                    new Horarios().setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(null, "¡No se han cargado los horarios y asignaciones!", 
+                    "Atencion", JOptionPane.WARNING_MESSAGE);
+                }
+                break;
             case "Asignacion":
                 if(!estructuras.Estructuras.b_horarios.esVacio()){
-                    
+                    this.setVisible(false);
+                    new Asignaciones().setVisible(true);
                 }else{
                     JOptionPane.showMessageDialog(null, "¡No se han cargado los horarios y asignaciones!", 
                     "Atencion", JOptionPane.WARNING_MESSAGE);
@@ -168,11 +211,45 @@ public class AreaColaborador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_administrar_btnActionPerformed
 
-    private void volver_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volver_btActionPerformed
+    private void cerrar_sesion_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrar_sesion_btActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         new Login().setVisible(true);
-    }//GEN-LAST:event_volver_btActionPerformed
+    }//GEN-LAST:event_cerrar_sesion_btActionPerformed
+
+    private void graficar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graficar_btActionPerformed
+        // TODO add your handling code here:
+        String grafica_elegida = grafica_cb.getSelectedItem().toString();
+        // Todo, Cursos asignados por estudiante, Estudiantes asignados a un curso, 
+        // Cursos en un salon, Estudiantes aprobados y reprobados
+        
+        
+        switch(grafica_elegida){
+            case "Todo":
+                {
+                    try {
+                        estructuras.Estructuras.graficar("todo", -1);
+                    } catch (IOException ex) {
+                        Logger.getLogger(AreaColaborador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(AreaColaborador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                break;
+            case "Cursos asignados por estudiante":
+                
+                break;
+            case "Estudiantes asignados a un curso":
+                
+                break;
+            case "Cursos en un salon":
+                
+                break;
+            case "Estudiantes aprobados y reprobados":
+                
+                break;
+        }
+    }//GEN-LAST:event_graficar_btActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,8 +290,11 @@ public class AreaColaborador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton administrar_btn;
     private javax.swing.JComboBox<String> administrar_cb;
+    private javax.swing.JButton cerrar_sesion_bt;
+    private javax.swing.JLabel elige_grafica_lb;
+    private javax.swing.JComboBox<String> grafica_cb;
+    private javax.swing.JButton graficar_bt;
     private javax.swing.JLabel info_area_colaborador_lb;
     private javax.swing.JLabel titulo_area_colaborador_lb;
-    private javax.swing.JButton volver_bt;
     // End of variables declaration//GEN-END:variables
 }

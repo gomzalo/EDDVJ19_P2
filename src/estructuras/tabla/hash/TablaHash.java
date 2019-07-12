@@ -18,22 +18,24 @@ import pojos.Estudiante;
 public class TablaHash {
 //    static final int TAM_TABLA = 37;
     public Estudiante[] tabla;
+    int tamano;
     int N;
     int factorCarga;
     
     public TablaHash(){
-        this.tabla = new Estudiante[37];
-        this.N = 0;
-        this.factorCarga = 0;
+        tamano = 37;
+        tabla = new Estudiante[tamano];
+        N = 0;
+        factorCarga = 0;
         Arrays.fill(this.tabla, null);
     }
     
     public int funcionHash(int clave){
-        return (clave % this.tabla.length);
+        return (clave % tamano);
     }
     
     public void insertar(Estudiante nuevo_estudiante){
-        double Por = ((double) this.N / this.tabla.length)*100;
+        double Por = ((double) N / tamano)*100;
         System.out.println("POR = " + Por);
         if(Por >= 55){
             reHash();
@@ -41,31 +43,22 @@ public class TablaHash {
         
         int indice = funcionHash(nuevo_estudiante.getCarnet());
         System.out.println("Se obtuvo el indice: " + indice);
-        int tamano_tabla = this.tabla.length - 1;
-        
-        for (int k = 0; k < tamano_tabla; k++) {
-//            System.out.println("i: " + i);
-//            if(k == indice){
-                if(tabla[indice] == null){
-                    tabla[indice] = nuevo_estudiante;
-                    System.out.println("La posicion i = " + k + ", (indice = " + indice + ")"
-                    + " esta libre, se inserto el carnet: " + nuevo_estudiante.getCarnet() + ". N: " + N);
-                    N++;
-                    return;
-                }else if(this.tabla[indice].getCarnet() == nuevo_estudiante.getCarnet()){
-                    System.err.println("¡Ya se ha ingresado un estudiante con el carnet: " + nuevo_estudiante.getCarnet() + "!");
-                    return;
-                }else{
-                    System.err.println("Colision en indice: " + indice + ", carnet: " + nuevo_estudiante.getCarnet() + ".");
-                    int i = 1;
-                    indice = colision(nuevo_estudiante.getCarnet(), i);
-                    System.err.println("Nuevo indice/clave: " + indice + ".");
-                    i++;
-                    return;
-                }
-//            }
+        int tamano_tabla = tamano - 1;
+        int i = 1;
+
+        while(tabla[indice] != null){
+            System.err.println("Colision en indice: " + indice + ", carnet: " + nuevo_estudiante.getCarnet() + ".");
+            indice = indice + colision(nuevo_estudiante.getCarnet(), i);
+            indice = indice%tamano;
+            System.err.println("Nuevo indice/clave: " + indice + ".");
+            i++;
         }
-        System.err.println("El estudiante con carnet: " + nuevo_estudiante.getCarnet()+ ", no pudo ser ingresado");
+
+        tabla[indice] = nuevo_estudiante;
+        System.out.println("La posicion i = " + i + ", (indice = " + indice + ")"
+        + " esta libre, se inserto el carnet: " + nuevo_estudiante.getCarnet() + ". N: " + N);
+        N++;
+//        System.err.println("El estudiante con carnet: " + nuevo_estudiante.getCarnet()+ ", no pudo ser ingresado");
     }
     
     public int colision(int clave, int i){
@@ -75,16 +68,21 @@ public class TablaHash {
     public void mostrar(){
         if(this.tabla.length > 0){
             System.out.println("Elementos en la tabla hash:");
-            for (int i = 0; i < this.tabla.length - 1; i++) {
-                if(tabla[i] != null){
+//            for (int i = 0; i < this.tabla.length - 1; i++) {
+            int i = 0;
+            for (Estudiante e : tabla) {
+                if(e != null){
 //                    System.out.println("Carnet: " + tabla[i].getCarnet() + " (pos = " + i + ")");
-                    System.out.println("i: " + i + ", " + tabla[i].getCarnet() + ", nombre: " + tabla[i].getNombre());
+                    System.out.println("i: " + i + ", " + e.getCarnet() + ", nombre: " + e.getNombre());
                 }else{
                     System.out.println("i: " + i + ", 0 ");
                 }
+                i++;
             }
+                
+//            }
             System.out.println("");
-            System.out.println("N: " + this.N);
+//            System.out.println("N: " + this.N);
         }else{
             System.out.println("Tabla vacia.");
         }
@@ -101,13 +99,13 @@ public class TablaHash {
     public void reHash(){
         System.err.println("¡Se ha superado el 55%!");
         Estudiante[] array_limpio = limpiarEspacios();
-        int nuevo_tamano = getProximoPrimo(this.tabla.length * 2);
-        System.err.println("Nuevo tamano: " + nuevo_tamano + ".");
-        this.tabla = new Estudiante[nuevo_tamano];
-        this.N = 0;
+        tamano = getProximoPrimo(tamano * 2);
+        System.err.println("Nuevo tamano: " + tamano + ".");
+        tabla = new Estudiante[tamano];
+        N = 0;
         
         
-        Arrays.fill(this.tabla, null);
+        Arrays.fill(tabla, null);
         
         for (Estudiante estudiante : array_limpio) {
             insertar(estudiante);

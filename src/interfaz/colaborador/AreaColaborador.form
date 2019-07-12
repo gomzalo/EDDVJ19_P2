@@ -27,8 +27,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="volver_bt" min="-2" max="-2" attributes="0"/>
+                  <Component id="cerrar_sesion_bt" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="elige_grafica_lb" min="-2" max="-2" attributes="0"/>
                       <Component id="info_area_colaborador_lb" min="-2" max="-2" attributes="0"/>
                       <Component id="titulo_area_colaborador_lb" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
@@ -36,9 +37,14 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="administrar_btn" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="grafica_cb" min="-2" pref="158" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="graficar_bt" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="32" max="32767" attributes="0"/>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -54,8 +60,15 @@
                   <Component id="administrar_btn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="administrar_cb" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
-              <Component id="volver_bt" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="elige_grafica_lb" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="grafica_cb" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="graficar_bt" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <Component id="cerrar_sesion_bt" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -86,13 +99,14 @@
     <Component class="javax.swing.JComboBox" name="administrar_cb">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
+          <StringArray count="7">
             <StringItem index="0" value="Usuarios"/>
             <StringItem index="1" value="Edificios"/>
             <StringItem index="2" value="Cursos"/>
             <StringItem index="3" value="Estudiantes"/>
             <StringItem index="4" value="Catedraticos"/>
-            <StringItem index="5" value="Asignacion"/>
+            <StringItem index="5" value="Horarios"/>
+            <StringItem index="6" value="Asignacion"/>
           </StringArray>
         </Property>
       </Properties>
@@ -100,12 +114,42 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="volver_bt">
+    <Component class="javax.swing.JButton" name="cerrar_sesion_bt">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Volver"/>
+        <Property name="text" type="java.lang.String" value="Cerrar sesion"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="volver_btActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cerrar_sesion_btActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="elige_grafica_lb">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Elige la grafica que deseas visualizar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="grafica_cb">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="5">
+            <StringItem index="0" value="Todo"/>
+            <StringItem index="1" value="Cursos asignados por estudiante"/>
+            <StringItem index="2" value="Estudiantes asignados a un curso"/>
+            <StringItem index="3" value="Cursos en un salon"/>
+            <StringItem index="4" value="Estudiantes aprobados y reprobados"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="graficar_bt">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Graficar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="graficar_btActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

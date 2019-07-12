@@ -11,6 +11,8 @@ import java.util.List;
 
 import pojos.Horario;
 import archivos.Escritura;
+import estructuras.arboles.b.subestructuras.cola.ColaB;
+import estructuras.arboles.b.subestructuras.cola.NodoColaB;
 import estructuras.listas.simples.ListaS;
 
 /**
@@ -22,6 +24,7 @@ public class ArbolB<T> {
     private int orden;
     private int indiceDivision;
     private int tamPagina;
+    ColaB cola_auxiliar;
     
     public static String b_aux;
     
@@ -32,12 +35,15 @@ public class ArbolB<T> {
         indiceDivision = (orden+1)/2;
         this.raiz = new PaginaB(orden,indiceDivision);
         this.orden = orden;
+        cola_auxiliar = null;
     }
     
     
     public boolean esVacio() {
     	return raiz == null;
     }
+    
+    
     
     public void Insertar(Horario nuevo_horario, ListaS asignaciones){
         
@@ -69,6 +75,39 @@ public class ArbolB<T> {
             }
         }else{//si es hoja
             return actual.insertarLlave(nuevo);
+        }
+    }
+    
+    public ColaB listar(){
+        if(!esVacio()){
+            cola_auxiliar = new ColaB();
+            listar(raiz);
+            return cola_auxiliar;
+        }
+        return null;
+    }
+      
+    public void listar(PaginaB<T> actual){
+        if(actual != null){
+            if(actual.getHijos() != null){
+                for (int i = 0; i < actual.getLlenura(); i++) {
+                    if(actual.getHijos()[i] != null){
+                        Imprimir(actual.getHijos()[i]);
+                        System.out.println(actual.getLlaves()[i].getHorario().getCodigo());
+                        cola_auxiliar.encolar(new NodoColaB(actual.getLlaves()[i].getHorario()));
+                    }
+            }
+            Imprimir(actual.getHijos()[actual.getLlenura()]);
+            }else{
+                for (int i = 0; i < actual.getLlenura(); i++) {
+                    if(actual.getLlaves()[i] != null){
+                        System.out.println(actual.getLlaves()[i].getHorario().getCodigo());
+                        cola_auxiliar.encolar(new NodoColaB(actual.getLlaves()[i].getHorario()));
+                    }
+                }
+                System.out.println("\n");
+            }
+            
         }
     }
     
@@ -395,6 +434,14 @@ public class ArbolB<T> {
 //            
 //        }
 //    }
+
+    public PaginaB<T> getRaiz() {
+        return raiz;
+    }
+
+    public void setRaiz(PaginaB<T> raiz) {
+        this.raiz = raiz;
+    }
     
     
 }

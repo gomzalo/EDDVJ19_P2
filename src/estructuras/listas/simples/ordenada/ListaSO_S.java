@@ -182,7 +182,7 @@ public class ListaSO_S {
             + 	"\n\t{"
             +   "\n"
             +   "\n\t\tgraph[color = \"crimson:firebrick3\", fontcolor = \"white\", fontname = serif, style = filled, label = \"Salones\"];"
-            + 	"\n\t\tnode[shape = house, style = filled, color = white, fillcolor = \"honeydew4:azure\", fontcolor = red3, peripheries = 2];"
+            + 	"\n\t\tnode[shape = square, style = filled, color = white, fillcolor = \"honeydew4:azure\", fontcolor = red3, peripheries = 2];"
             + 	"\n\t\tedge[color = \"teal:paleturquoise\"];"
             + 	"\n"
             + 	"\n"

@@ -20,6 +20,7 @@ import estructuras.listas.simples.ordenada.NodoSO_C;
 import estructuras.listas.simples.ordenada.NodoSO_S;
 import estructuras.tabla.hash.TablaHash;
 import interfaz.colaborador.AreaColaborador;
+import interfaz.estudiante.AreaEstudiante;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import pojos.Asignacion;
@@ -160,6 +161,8 @@ public class Login extends javax.swing.JFrame {
                         getUsuario().getNombre() + "!", 
                         "Estudiante", JOptionPane.INFORMATION_MESSAGE);
                         // Se redirige al area de trabajo de estudiantes
+                        this.setVisible(false);
+                        new AreaEstudiante(usuario_txt.getText()).setVisible(true);
                     }else if(estructuras.Estructuras.ldo_usuarios.
                     buscarNodo(Integer.parseInt(usuario_txt.getText())).
                     getUsuario().getTipo().equalsIgnoreCase("colaborador")){
