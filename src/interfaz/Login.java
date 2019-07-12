@@ -5,12 +5,13 @@
  */
 package interfaz;
 
+import interfaz.root.Carga;
 import estructuras.arboles.avl.ArbolAVL;
 import estructuras.arboles.b.ArbolB;
-import estructuras.listas.dobles.circular.ListaDC;
-import estructuras.listas.dobles.circular.NodoDC;
-import estructuras.listas.dobles.ordenada.ListaDO;
-import estructuras.listas.dobles.ordenada.NodoDO;
+import estructuras.listas.dobles.circular.ListaDC_E;
+import estructuras.listas.dobles.circular.NodoDC_E;
+import estructuras.listas.dobles.ordenada.ListaDO_U;
+import estructuras.listas.dobles.ordenada.NodoDO_U;
 import estructuras.listas.simples.ListaS;
 import estructuras.listas.simples.NodoS;
 import estructuras.listas.simples.ordenada.ListaSO_C;
@@ -18,6 +19,7 @@ import estructuras.listas.simples.ordenada.ListaSO_S;
 import estructuras.listas.simples.ordenada.NodoSO_C;
 import estructuras.listas.simples.ordenada.NodoSO_S;
 import estructuras.tabla.hash.TablaHash;
+import interfaz.colaborador.AreaColaborador;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import pojos.Asignacion;
@@ -53,10 +55,10 @@ public class Login extends javax.swing.JFrame {
 
         login_titulo_lb = new javax.swing.JLabel();
         usuario_txt = new javax.swing.JTextField();
-        contrasena_txt = new javax.swing.JTextField();
         id_usuario_lb = new javax.swing.JLabel();
         contrasena_usaurio_lb = new javax.swing.JLabel();
         login_bt = new javax.swing.JButton();
+        contrasena_pass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -94,12 +96,11 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(113, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(contrasena_usaurio_lb)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(contrasena_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(usuario_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(id_usuario_lb, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(usuario_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                            .addComponent(id_usuario_lb)
+                            .addComponent(contrasena_pass))
                         .addGap(97, 97, 97))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(login_bt)
@@ -116,9 +117,9 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(usuario_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
                 .addComponent(contrasena_usaurio_lb)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contrasena_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(contrasena_pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
                 .addComponent(login_bt)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
@@ -132,11 +133,59 @@ public class Login extends javax.swing.JFrame {
 
     private void login_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btActionPerformed
         // TODO add your handling code here:
+        // Si es usuario root
         if(usuario_txt.getText().equals("root") && 
-            contrasena_txt.getText().equals("root")){
+            contrasena_pass.getText().equals("root")){
             JOptionPane.showMessageDialog(null, "Bienvenido super usuario ggg");
             this.setVisible(false);
             new Carga().setVisible(true);
+        }
+        // Si no es usuario root, se verifica si hay usuarios cargados
+        if(!estructuras.Estructuras.ldo_usuarios.esVacia()){
+            // Se busca en la lista de usuarios
+            if(estructuras.Estructuras.ldo_usuarios.
+            buscar(Integer.parseInt(usuario_txt.getText()))){
+                // Se verifica su contrasena
+                if(estructuras.Estructuras.ldo_usuarios.buscarNodo(
+                Integer.parseInt(usuario_txt.getText())).
+                getUsuario().getContrasena().equals(contrasena_pass.getText())){
+                    // Se verifica que tipo de usuario es
+                    if(estructuras.Estructuras.ldo_usuarios.
+                    buscarNodo(Integer.parseInt(usuario_txt.getText())).
+                    getUsuario().getTipo().equalsIgnoreCase("estudiante")){
+                        // Si es estudiante
+                        JOptionPane.showMessageDialog(null, "¡Bienvenido " 
+                        + estructuras.Estructuras.ldo_usuarios.
+                        buscarNodo(Integer.parseInt(usuario_txt.getText())).
+                        getUsuario().getNombre() + "!", 
+                        "Estudiante", JOptionPane.INFORMATION_MESSAGE);
+                        // Se redirige al area de trabajo de estudiantes
+                    }else if(estructuras.Estructuras.ldo_usuarios.
+                    buscarNodo(Integer.parseInt(usuario_txt.getText())).
+                    getUsuario().getTipo().equalsIgnoreCase("colaborador")){
+                        // Si es colaborador
+                        JOptionPane.showMessageDialog(null, "¡Bienvenido " 
+                        + estructuras.Estructuras.ldo_usuarios.
+                        buscarNodo(Integer.parseInt(usuario_txt.getText())).
+                        getUsuario().getNombre() +  "!",
+                        "Colaborador", JOptionPane.INFORMATION_MESSAGE);
+                        // Se redirige al area de trabajo de colaboradores
+                        this.setVisible(false);
+                        new AreaColaborador().setVisible(true);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "¡Contrasena incorrecta para el usuario con ID: "
+                    + usuario_txt.getText() + "!", 
+                    "Atencion", JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "¡No existe el usuario con ID: "
+                + usuario_txt.getText() + "!", 
+                "Atencion", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "¡No se han cargado los usuarios!", 
+            "Atencion", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_login_btActionPerformed
 
@@ -177,16 +226,16 @@ public class Login extends javax.swing.JFrame {
 //        lsos.graficar("grafo");
     // ||||||||||||||||||||||||||||     FIN LSOS         ||||||||||||||||||||||||||||
     // ||||||||||||||||||||||||||||     INICIA LDC      ||||||||||||||||||||||||||||
-//        ListaDC ldc = new ListaDC();
-//        ldc.insertar(new NodoDC(new Edificio("T1"), null));
-//        ldc.insertar(new NodoDC(new Edificio("T1"), null));
-//        ldc.insertar(new NodoDC(new Edificio("T3"), null));
-//        ldc.insertar(new NodoDC(new Edificio("S11"), lsos));
-//        ldc.insertar(new NodoDC(new Edificio("T7"), null));
-//        ldc.insertar(new NodoDC(new Edificio("T9"), null));
-//        ldc.insertar(new NodoDC(new Edificio("M2"), null));
-//        ldc.insertar(new NodoDC(new Edificio("Biblioteca central"), null));
-//        ldc.insertar(new NodoDC(new Edificio("Iglu"), lsos));
+//        ListaDC_E ldc = new ListaDC_E();
+//        ldc.insertar(new NodoDC_E(new Edificio("T1"), null));
+//        ldc.insertar(new NodoDC_E(new Edificio("T1"), null));
+//        ldc.insertar(new NodoDC_E(new Edificio("T3"), null));
+//        ldc.insertar(new NodoDC_E(new Edificio("S11"), lsos));
+//        ldc.insertar(new NodoDC_E(new Edificio("T7"), null));
+//        ldc.insertar(new NodoDC_E(new Edificio("T9"), null));
+//        ldc.insertar(new NodoDC_E(new Edificio("M2"), null));
+//        ldc.insertar(new NodoDC_E(new Edificio("Biblioteca central"), null));
+//        ldc.insertar(new NodoDC_E(new Edificio("Iglu"), lsos));
 //        ldc.mostrar();
 //        ldc.eliminar("Biblioteca central");
 //        ldc.eliminar("S11");
@@ -197,14 +246,14 @@ public class Login extends javax.swing.JFrame {
 //        ldc.graficar("grafo");
     // ||||||||||||||||||||||||||||     FIN LDC         ||||||||||||||||||||||||||||
     // ||||||||||||||||||||||||||||     INICIA LDO      ||||||||||||||||||||||||||||
-//        ListaDO ldo = new ListaDO();
-//        ldo.insertar(new NodoDO(new Usuario(2, "Mario", "Rockw8u28", "Colaborador")));
-//        ldo.insertar(new NodoDO(new Usuario(1, "Ruth", "Love2999", "Usuario")));
-//        ldo.insertar(new NodoDO(new Usuario(55, "Claudia", "Fisica12333", "Colaborador")));
-////        ldo.insertar(new NodoDO(new Usuario(1, "Ruth", "Love2999", "Usuario")));
-//        ldo.insertar(new NodoDO(new Usuario(1100, "Rocio", "Love292119", "Usuario")));
-//        ldo.insertar(new NodoDO(new Usuario(34, "Diana", "Love299129", "Usuario")));
-//        ldo.insertar(new NodoDO(new Usuario(13, "Lady", "dasoiio", "Colaborador")));
+//        ListaDO_U ldo = new ListaDO_U();
+//        ldo.insertar(new NodoDO_U(new Usuario(2, "Mario", "Rockw8u28", "AreaColaborador")));
+//        ldo.insertar(new NodoDO_U(new Usuario(1, "Ruth", "Love2999", "Usuario")));
+//        ldo.insertar(new NodoDO_U(new Usuario(55, "Claudia", "Fisica12333", "AreaColaborador")));
+////        ldo.insertar(new NodoDO_U(new Usuario(1, "Ruth", "Love2999", "Usuario")));
+//        ldo.insertar(new NodoDO_U(new Usuario(1100, "Rocio", "Love292119", "Usuario")));
+//        ldo.insertar(new NodoDO_U(new Usuario(34, "Diana", "Love299129", "Usuario")));
+//        ldo.insertar(new NodoDO_U(new Usuario(13, "Lady", "dasoiio", "AreaColaborador")));
 //        ldo.mostrar();
 //        ldo.eliminar(1100);
 //        ldo.eliminar(1);
@@ -326,7 +375,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField contrasena_txt;
+    private javax.swing.JPasswordField contrasena_pass;
     private javax.swing.JLabel contrasena_usaurio_lb;
     private javax.swing.JLabel id_usuario_lb;
     private javax.swing.JButton login_bt;

@@ -11,12 +11,12 @@ import pojos.Usuario;
  *
  * @author g
  */
-public class NodoDO {
+public class NodoDO_U {
     private Usuario usuario;
-    private NodoDO siguiente;
-    private NodoDO anterior;
+    private NodoDO_U siguiente;
+    private NodoDO_U anterior;
 
-    public NodoDO(Usuario usuario) {
+    public NodoDO_U(Usuario usuario) {
         this.usuario = usuario;
         this.siguiente = null;
         this.anterior = null;
@@ -30,19 +30,19 @@ public class NodoDO {
         this.usuario = usuario;
     }
 
-    public NodoDO getSiguiente() {
+    public NodoDO_U getSiguiente() {
         return siguiente;
     }
 
-    public void setSiguiente(NodoDO siguiente) {
+    public void setSiguiente(NodoDO_U siguiente) {
         this.siguiente = siguiente;
     }
 
-    public NodoDO getAnterior() {
+    public NodoDO_U getAnterior() {
         return anterior;
     }
 
-    public void setAnterior(NodoDO anterior) {
+    public void setAnterior(NodoDO_U anterior) {
         this.anterior = anterior;
     }
     

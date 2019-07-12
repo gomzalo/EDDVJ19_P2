@@ -14,7 +14,7 @@ import pojos.Catedratico;
 public class NodoAVL {
     private NodoAVL izquierda;
     private NodoAVL derecha;
-    private int altura;
+    int altura;
     private Catedratico catedratico;
 
     public NodoAVL(Catedratico catedratico) {

@@ -6,6 +6,7 @@
 package estructuras.listas.simples;
 
 import pojos.Asignacion;
+import pojos.Estudiante;
 
 /**
  *
@@ -14,6 +15,7 @@ import pojos.Asignacion;
 public class NodoS {
     private NodoS siguiente;
     private Asignacion asignacion;
+    private Estudiante estudiante;
 
     public NodoS() {
         this.siguiente = null;
@@ -23,6 +25,12 @@ public class NodoS {
     public NodoS(Asignacion asignacion) {
         this.siguiente = null;
         this.asignacion = asignacion;
+    }
+    
+    public NodoS(Asignacion asignacion, Estudiante estudiante) {
+        this.siguiente = null;
+        this.asignacion = asignacion;
+        this.estudiante = estudiante;
     }
 
     public NodoS getSiguiente() {
@@ -62,6 +70,14 @@ public class NodoS {
             +   "\n";
         }
         return contenido;
+    }
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
     }
     
 }

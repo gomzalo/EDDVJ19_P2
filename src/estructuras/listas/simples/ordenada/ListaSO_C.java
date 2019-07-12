@@ -72,12 +72,14 @@ public class ListaSO_C {
     }
     
     // Arreglar eliminación
-    public void eliminar(int codigo){
+    public boolean eliminar(int codigo){
         if(!buscar(codigo)){
             System.out.println("El curso con codigo: " + codigo + ", no existe en la lista.");
+            return false;
         }else{
             if(esVacia()){
                 System.out.println("Lista vacia, nada que eliminar.");
+                return false;
             }else{
                 if(codigo == inicio.getCurso().getCodigo()){
                     System.out.println("Se ha eliminado correctamente el curso con el codigo: " + 
@@ -86,6 +88,7 @@ public class ListaSO_C {
                     inicio.setSiguiente(null);
                     inicio = auxiliar;
                     tamano--;
+                    return true;
                 }else{
                     NodoSO_C auxiliar = inicio;
                     while(auxiliar != null){
@@ -96,7 +99,7 @@ public class ListaSO_C {
                             auxiliar = null;
                             auxiliar1.setSiguiente(auxiliar);
                             tamano--;
-                            return;
+                            return true;
                         }
                         auxiliar = auxiliar.getSiguiente();
                     }
@@ -105,6 +108,7 @@ public class ListaSO_C {
                 System.out.println("El curso con codigo: " + codigo + ", no existe.");
             }   
         }
+        return false;
     }
     
     public void mostrar(){
@@ -121,7 +125,7 @@ public class ListaSO_C {
         }
     }
     
-    public void modificar(int codigo, String nuevo_nombre, int nuevo_semestre, int nuevos_creditos){
+    public boolean modificar(int codigo, String nuevo_nombre, int nuevo_semestre, int nuevos_creditos){
         if(buscar(codigo)){
 //            buscarNodo(numero).getSalon().setNombre_edificio(nuevo_nombre_edificio);
             buscarNodo(codigo).getCurso().setNombre(nuevo_nombre);
@@ -129,8 +133,10 @@ public class ListaSO_C {
             buscarNodo(codigo).getCurso().setCreditos(nuevos_creditos);
             System.out.println("Se ha modificado el curso con codigo: " + codigo + ", por: "
             + "\nNombre: "+ nuevo_nombre + ", semestre: " + nuevo_semestre + ", creditos: " + nuevos_creditos + ".");
+            return true;
         }else{
             System.out.println("No existe el curso con codigo: " + codigo + ".");
+            return false;
         }
     }
     

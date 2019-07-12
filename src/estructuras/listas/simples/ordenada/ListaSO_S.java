@@ -71,12 +71,14 @@ public class ListaSO_S {
     }
     
     // Arreglar eliminación
-    public void eliminar(int numero){
+    public boolean eliminar(int numero){
         if(!buscar(numero)){
             System.out.println("El salon con numero: " + numero + ", no existe en la lista.");
+            return false;
         }else{
             if(esVacia()){
                 System.out.println("Lista vacia, nada que eliminar.");
+                return false;
             }else{
                 if(numero == inicio.getSalon().getNumero()){
                     System.out.println("Se ha eliminado correctamente el salon con el numero: " + 
@@ -85,6 +87,7 @@ public class ListaSO_S {
                     inicio.setSiguiente(null);
                     inicio = auxiliar;
                     tamano--;
+                    return true;
                 }else{
                     NodoSO_S auxiliar = inicio;
                     while(auxiliar != null){
@@ -94,7 +97,7 @@ public class ListaSO_S {
                             auxiliar.getSalon().getNumero() + ", de la lista.");
                             auxiliar = null;
                             auxiliar1.setSiguiente(auxiliar);
-                            return;
+                            return true;
                         }
                         auxiliar = auxiliar.getSiguiente();
                     }
@@ -102,8 +105,10 @@ public class ListaSO_S {
     //                auxiliar.setSiguiente(null);
                 }
                 System.out.println("El salon con numero: " + numero + ", no existe.");
+                
             }   
         }
+        return false;
     }
     
     public void mostrar(){

@@ -33,13 +33,11 @@
               <EmptySpace pref="113" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="contrasena_usaurio_lb" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="contrasena_txt" min="-2" pref="190" max="-2" attributes="0"/>
-                              <Component id="usuario_txt" min="-2" pref="190" max="-2" attributes="0"/>
-                              <Component id="id_usuario_lb" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="usuario_txt" alignment="0" pref="190" max="32767" attributes="0"/>
+                          <Component id="id_usuario_lb" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="contrasena_pass" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                   </Group>
@@ -62,9 +60,9 @@
               <Component id="usuario_txt" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="contrasena_usaurio_lb" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="contrasena_txt" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="contrasena_pass" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="login_bt" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="31" max="32767" attributes="0"/>
           </Group>
@@ -84,8 +82,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usuario_txtActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="contrasena_txt">
     </Component>
     <Component class="javax.swing.JLabel" name="id_usuario_lb">
       <Properties>
@@ -107,6 +103,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="login_btActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="contrasena_pass">
     </Component>
   </SubComponents>
 </Form>

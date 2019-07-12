@@ -44,7 +44,7 @@ public class ArbolAVL {
     
     // Obtiene la altura del nodo.
     private int altura(NodoAVL t){
-        return t == null? -1 : t.getAltura();
+        return t == null? -1 : t.altura;
     }
     
     // Maximo del nodo izq/der.
@@ -63,7 +63,7 @@ public class ArbolAVL {
     
     // Inserta info en nodos, recursivamente.
     private NodoAVL insertar(Catedratico nuevo_catedratico, NodoAVL t){
-    	System.out.println(nuevo_catedratico.getId());
+//    	System.out.println(nuevo_catedratico.getId());
     	System.out.println("Insertando");
         if(t == null){
             t = new NodoAVL(nuevo_catedratico);
@@ -72,7 +72,7 @@ public class ArbolAVL {
         }else if(nuevo_catedratico.getId() < t.getCatedratico().getId()){
 //        	System.out.println("Insertando en la izquierda.");
             t.setIzquierda(insertar(nuevo_catedratico, t.getIzquierda()));
-            if(getFactorEquilibrio(t) == 2){
+            if(altura(t.getIzquierda())-altura(t.getDerecha()) == 2){
 //                if(nuevo_catedratico.getId().compareTo(t.getIzquierda().getCatedratico().getId()) < 0){
                 if(nuevo_catedratico.getId() < t.getIzquierda().getCatedratico().getId()){
                     // CASO 1: Izquierda-izquierda
@@ -87,7 +87,7 @@ public class ArbolAVL {
         }else if(nuevo_catedratico.getId() > t.getCatedratico().getId()){
 //        	System.out.println("Insertando en la derecha.");
             t.setDerecha(insertar(nuevo_catedratico, t.getDerecha()));
-            if(getFactorEquilibrio(t) == 2){
+            if(altura(t.getIzquierda())-altura(t.getDerecha()) == 2){
 //                if(nuevo_catedratico.getId().compareTo(t.getDerecha().getCatedratico().getId()) > 0){
                 if(nuevo_catedratico.getId() > t.getDerecha().getCatedratico().getId()){
                     // CASO 3: Derecha-derecha
@@ -99,7 +99,7 @@ public class ArbolAVL {
             }
             
         }else{
-            // Duplicado; no hace nada.
+            ; // Duplicado; no hace nada.
             System.out.println("Valor duplicado.");
         }
         t.setAltura(max(altura(t.getIzquierda()), altura(t.getDerecha())) + 1);
@@ -143,7 +143,7 @@ public class ArbolAVL {
     }
     
     // Devuelve el numero de nodos
-    public int contarNodos(){
+    public int getTamano(){
         return contarNodos(raiz);
     }
     
@@ -366,9 +366,9 @@ public class ArbolAVL {
     
     public String graficar(String opcion) throws IOException, InterruptedException{
         System.out.println("Se muestra la grafica de los catedraticos en el arbol AVL:");
-        String nombre = "arbol_avl";
+        String nombre = "arbol_avl_catedraticos";
         String dot_subgrafo_arbol_avl =
-            "\n\tsubgraph cluster_avl"
+            "\n\tsubgraph cluster_arbol_avl_catedraticos"
         +   "\n\t{"
         +   "\n"
             +   "\n\t\tgraph[color = \"lightcyan:mistyrose\", fontcolor = \"darkslateblue\", fontname = serif, style = filled, label = \"Catedraticos\"];"
@@ -381,7 +381,7 @@ public class ArbolAVL {
         
         if(opcion.equals("grafo")) {
             String dot_grafo_arbol_avl =   
-            "digraph avl"
+            "digraph arbol_avl_catedraticos"
             +   "\n{"
                 +   dot_subgrafo_arbol_avl
             +   "\n}";

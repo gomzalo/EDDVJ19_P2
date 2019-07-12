@@ -6,8 +6,8 @@
 package archivos;
 
 import estructuras.Estructuras;
-import estructuras.listas.dobles.circular.NodoDC;
-import estructuras.listas.dobles.ordenada.NodoDO;
+import estructuras.listas.dobles.circular.NodoDC_E;
+import estructuras.listas.dobles.ordenada.NodoDO_U;
 import estructuras.listas.simples.ListaS;
 import estructuras.listas.simples.NodoS;
 import estructuras.listas.simples.ordenada.ListaSO_S;
@@ -101,7 +101,7 @@ public class Lectura {
                            if(estructuras.Estructuras.th_estudiantes.buscar(id) != null){
                                Usuario usuario_temporal = new Usuario(id, nombre, contrasena, tipo);
                                usuario_temporal.setEstudiante(estructuras.Estructuras.th_estudiantes.buscar(id));
-                               estructuras.Estructuras.ldo_usuarios.insertar(new NodoDO(usuario_temporal));
+                               estructuras.Estructuras.ldo_usuarios.insertar(new NodoDO_U(usuario_temporal));
                                
                            }else{
                                 JOptionPane.showMessageDialog(null, "¡No existe un estudiante con el ID:" + id + "!", 
@@ -112,7 +112,7 @@ public class Lectura {
                             "Atencion", JOptionPane.WARNING_MESSAGE);
                         }
                     }else{
-                        estructuras.Estructuras.ldo_usuarios.insertar(new NodoDO(new Usuario(id, nombre, contrasena, tipo)));
+                        estructuras.Estructuras.ldo_usuarios.insertar(new NodoDO_U(new Usuario(id, nombre, contrasena, tipo)));
                     }
                 }
                 // :::::::::::::::::::  CATEDRATICO :::::::::::::::::::
@@ -155,7 +155,7 @@ public class Lectura {
                     nombre = nombre.replaceAll("[\"'\u2018\u2019\u201c\u201d]", "");
                     System.out.println("nombre: " + nombre);
                     // Insertando a lista doble circular de edificios
-                    estructuras.Estructuras.ldc_edificios.insertar(new NodoDC(new Edificio(nombre), null));
+                    estructuras.Estructuras.ldc_edificios.insertar(new NodoDC_E(new Edificio(nombre), null));
                 }
                 // :::::::::::::::::::  SALON :::::::::::::::::::
                 // Salon(nombre, número, capacidad);
@@ -330,7 +330,8 @@ public class Lectura {
                                         ListaS lista_asignaciones_temporales = new ListaS();
 
                                         lista_asignaciones_temporales.insertar(new NodoS(
-                                        new Asignacion(carnet, codigo_horario, zona, nota_final)));
+                                        new Asignacion(carnet, codigo_horario, zona, nota_final), 
+                                        estructuras.Estructuras.th_estudiantes.buscar(carnet)));
 
                                         estructuras.Estructuras.b_horarios.
                                         buscarPorParametro(codigo_horario).
@@ -339,7 +340,8 @@ public class Lectura {
                                         estructuras.Estructuras.b_horarios.
                                         buscarPorParametro(codigo_horario).
                                         getAsignaciones().insertar(new NodoS(
-                                        new Asignacion(carnet, codigo_horario, zona, nota_final)));
+                                        new Asignacion(carnet, codigo_horario, zona, nota_final),
+                                        estructuras.Estructuras.th_estudiantes.buscar(carnet)));
                                     }
                                 }else{
                                     JOptionPane.showMessageDialog(null, "¡No se pudo asignar"
@@ -361,12 +363,48 @@ public class Lectura {
                     }
                 }
             }
-//            estructuras.Estructuras.avl_catedraticos.graficar("grafo");
-            estructuras.Estructuras.b_horarios.graficar("grafo");
-//            estructuras.Estructuras.ldc_edificios.graficar("grafo");
-//            estructuras.Estructuras.ldo_usuarios.graficar("grafo");
-//            estructuras.Estructuras.lso_cursos.graficar("grafo");
+            if(!estructuras.Estructuras.th_estudiantes.esVacia()){
+                System.out.println("Se insertaron " + estructuras.Estructuras.
+                th_estudiantes.getTamano() + ", estudiantes.");
+                estructuras.Estructuras.th_estudiantes.mostrar();
 //            estructuras.Estructuras.th_estudiantes.graficar("grafo");
+            }else{
+                System.out.println("No se insertaron estudiantes.");
+            }
+            if(!estructuras.Estructuras.ldo_usuarios.esVacia()){
+                System.out.println("Se insertaron " + estructuras.Estructuras.
+                ldo_usuarios.getTamano() + ", usuarios.");
+//            estructuras.Estructuras.ldo_usuarios.graficar("grafo");
+            }else{
+                System.out.println("No se insertaron usuarios.");
+            }
+            if(!estructuras.Estructuras.avl_catedraticos.esVacio()){
+                System.out.println("Se insertaron " + estructuras.Estructuras.
+                avl_catedraticos.getTamano() + ", catedraticos.");
+//            estructuras.Estructuras.avl_catedraticos.graficar("grafo");
+            }else{
+                System.out.println("No se insertaron catedraticos.");
+            }
+            if(!estructuras.Estructuras.ldc_edificios.esVacia()){
+                System.out.println("Se insertaron " + estructuras.Estructuras.
+                ldc_edificios.getTamano() + ", edificios.");
+//            estructuras.Estructuras.ldc_edificios.graficar("grafo");
+            }else{
+                System.out.println("No se insertaron edificios.");
+            }
+            if(!estructuras.Estructuras.lso_cursos.esVacia()){
+                System.out.println("Se insertaron " + estructuras.Estructuras.
+                lso_cursos.getTamano() + ", cursos.");
+//            estructuras.Estructuras.lso_cursos.graficar("grafo");
+            }else{
+                System.out.println("No se insertaron cursos.");
+            }
+            if(!estructuras.Estructuras.b_horarios.esVacio()){
+//            System.out.println("Se insertaron " + estructuras.Estructuras.
+//            b_horarios.getTamano() + ", cursos.");
+//            estructuras.Estructuras.b_horarios.graficar("grafo");
+            }
+
 // ..................... Fin contenido archivo ..................... 
             
             // note that Scanner suppresses exceptions

@@ -12,11 +12,11 @@ import java.io.IOException;
  *
  * @author g
  */
-public class ListaDO {
-    private NodoDO inicio;
+public class ListaDO_U {
+    private NodoDO_U inicio;
     private int tamano;
 
-    public ListaDO() {
+    public ListaDO_U() {
         this.inicio = null;
         this.tamano = 0;
     }
@@ -25,7 +25,7 @@ public class ListaDO {
         return inicio == null;
     }
     
-    public NodoDO getInicio() {
+    public NodoDO_U getInicio() {
         return inicio;
     }
 
@@ -33,7 +33,7 @@ public class ListaDO {
         return tamano;
     }
     
-    public void insertar(NodoDO nuevo){
+    public void insertar(NodoDO_U nuevo){
         if(buscar(nuevo.getUsuario().getId())){
             System.out.println("Ya existe un usuario con el ID: " + nuevo.getUsuario().getId() +  ".");
         }else{
@@ -49,17 +49,17 @@ public class ListaDO {
         }
     }
     
-    public void insertarAlInicio(NodoDO nuevo){
+    public void insertarAlInicio(NodoDO_U nuevo){
         nuevo.setSiguiente(inicio);
         inicio.setAnterior(nuevo);
         inicio = nuevo;
         System.out.println("Se inserto correctamente el usuario con ID: " + nuevo.getUsuario().getId() + ", al inicio.");
     }
     
-    public void insertarAlMedio(NodoDO nuevo){
+    public void insertarAlMedio(NodoDO_U nuevo){
         boolean ins = false;
-        NodoDO temporal = inicio;
-        NodoDO auxiliar = inicio.getSiguiente();
+        NodoDO_U temporal = inicio;
+        NodoDO_U auxiliar = inicio.getSiguiente();
         while(auxiliar != null){
             if(nuevo.getUsuario().getId() >= temporal.getUsuario().getId() && nuevo.getUsuario().getId() <= auxiliar.getUsuario().getId()){
                 temporal.setSiguiente(nuevo);
@@ -80,14 +80,16 @@ public class ListaDO {
         System.out.println("Se inserto correctamente el usuario con ID: " + nuevo.getUsuario().getId() + ", al medio.");
     }
     
-    public void modificar(int id, String nuevo_nombre, String nueva_contrasena){
+    public boolean modificar(int id, String nuevo_nombre, String nueva_contrasena){
         if(buscar(id)){
             buscarNodo(id).getUsuario().setNombre(nuevo_nombre);
             buscarNodo(id).getUsuario().setContrasena(nueva_contrasena);
             System.out.println("Se ha modificado el usuario con ID: " + id + ", por: "
                     + "\nnombre: " + nuevo_nombre + ", contrasena: "+ nueva_contrasena + ".");
+            return true;
         }else{
             System.out.println("No existe un usuario con ID: " + id + ".");
+            return false;
         }
     }
     
@@ -100,7 +102,7 @@ public class ListaDO {
                 System.out.println("Se ha encontrado el usuario con ID: " + inicio.getUsuario().getId() + ".");
                 return true;
             }
-            NodoDO auxiliar = inicio.getSiguiente();
+            NodoDO_U auxiliar = inicio.getSiguiente();
             while(auxiliar != null){
                 if(id == auxiliar.getUsuario().getId()){
                     System.out.println("Se ha encontrado el usuario con ID: " + auxiliar.getUsuario().getId() + ".");
@@ -113,8 +115,8 @@ public class ListaDO {
         return false;
     }
     
-    public NodoDO buscarNodo(int id){
-        NodoDO encontrado;
+    public NodoDO_U buscarNodo(int id){
+        NodoDO_U encontrado;
         if(esVacia()){
             System.out.println("Lista doble ordenada vacia.");
             return null;
@@ -124,7 +126,7 @@ public class ListaDO {
                 encontrado = inicio;
                 return encontrado;
             }
-            NodoDO auxiliar = inicio.getSiguiente();
+            NodoDO_U auxiliar = inicio.getSiguiente();
             while(auxiliar != null){
                 if(id == auxiliar.getUsuario().getId()){
                     System.out.println("Se ha encontrado el usuario con ID: " + auxiliar.getUsuario().getId() + ".");
@@ -144,7 +146,7 @@ public class ListaDO {
         } else {
             System.out.println("Se muestran los usuarios en la lista:");
             System.out.print("ID: " + inicio.getUsuario().getId() + " <-> ");
-            NodoDO auxiliar = inicio;
+            NodoDO_U auxiliar = inicio;
             while(auxiliar != null){
                 System.out.print("ID: " + auxiliar.getUsuario().getId()
                                 + " <-> ");
@@ -154,9 +156,10 @@ public class ListaDO {
         }
     }
     
-    public void eliminar(int id){
+    public boolean eliminar(int id){
         if(!buscar(id)){
             System.out.println("No existe el usuario con ID: " + id + ", en la lista.");
+            return false;
         }else{
             // Solo hay un elemento
             if(id == inicio.getUsuario().getId() && inicio.getSiguiente() == null){
@@ -165,7 +168,7 @@ public class ListaDO {
                                 +   ", la lista ha quedado vacia.");
                 inicio = null;
                 tamano = 0;
-                return;
+                return true;
             // Eliminacion al inicio
             }else if(id == inicio.getUsuario().getId()){
                 System.out.println("Se ha eliminado el usuario con ID: " + inicio.getUsuario().getId()
@@ -173,8 +176,9 @@ public class ListaDO {
                 inicio = inicio.getSiguiente();
                 inicio.setAnterior(null);
                 tamano--;
+                return true;
             }else{
-                NodoDO auxiliar = inicio.getSiguiente();
+                NodoDO_U auxiliar = inicio.getSiguiente();
                 while(auxiliar.getSiguiente() != null){
                     if(id == auxiliar.getUsuario().getId()){
                         System.out.println("Se ha eliminado el usuario con ID: " + auxiliar.getUsuario().getId()
@@ -183,7 +187,7 @@ public class ListaDO {
                         auxiliar.getSiguiente().setAnterior(auxiliar.getAnterior());
                         auxiliar.setSiguiente(null);
                         auxiliar.setAnterior(null);
-                        return;
+                        return true;
                     }
                     auxiliar = auxiliar.getSiguiente();
                 }
@@ -191,17 +195,19 @@ public class ListaDO {
                     System.out.println( "Se ha eliminado el usuario con ID: " + auxiliar.getUsuario().getId()
                                +   ", al final.");
                     auxiliar.getAnterior().setSiguiente(null);
+                    return true;
                 }
                 tamano--;
             }
         }
+        return false;
     }
     
     public String graficar(String opcion) throws IOException, InterruptedException{
         System.out.println("Se muestra la grafica de los usuarios en la lista doble ordenada:");
-        String nombre = "lista_doble_ordenada";
+        String nombre = "lista_doble_ordenada_usuarios";
         String dot_subgrafo_lista_doble_ordenada =
-        "\n\tsubgraph cluster_lista_doble_ordenada"
+        "\n\tsubgraph cluster_lista_doble_ordenada_usuarios"
         +   "\n\t{"
         +   "\n"
         +       "\n\t\tgraph[color = \"grey9:darkslategray\", fontcolor = \"aquamarine2\", fontname = serif, style = filled, label = \"Usuarios\"];"
@@ -214,7 +220,7 @@ public class ListaDO {
         
         if(opcion.equals("grafo")){
             String dot_grafo_lista_doble_ordenada =
-            "digraph lista_doble_ordenada"
+            "digraph lista_doble_ordenada_usuarios"
             +   "\n{"
                 +   dot_subgrafo_lista_doble_ordenada    
             +   "\n}";
@@ -230,7 +236,7 @@ public class ListaDO {
     public String generarDot(String _id) throws IOException{
         String dot = "";
         if(!esVacia()){
-            NodoDO auxiliar_contenido = inicio;
+            NodoDO_U auxiliar_contenido = inicio;
             while(auxiliar_contenido.getSiguiente() != null){
                 // -------------------  Contendio   -------------------
                 // Actual
@@ -240,10 +246,10 @@ public class ListaDO {
             // Ultimo
             dot += auxiliar_contenido.getContenido(_id);
             
-            dot += "\n\t\t{"
-            + "\n\t\trank = same ";
+//            dot += "\n\t\t{"
+//            + "\n\t\trank = same ";
             
-            NodoDO auxiliar_enlaces = inicio;
+            NodoDO_U auxiliar_enlaces = inicio;
             while(auxiliar_enlaces.getSiguiente() != null) {
                 // -------------------  Enlaces siguientes  -------------------
             	dot += "\n\t\t" + _id + auxiliar_enlaces.getUsuario().getId() + "->" 
@@ -254,8 +260,8 @@ public class ListaDO {
                 auxiliar_enlaces = auxiliar_enlaces.getSiguiente();
             }
             
-            dot +=  "\n\t\t}"
-                +   "\n";
+//            dot +=  "\n\t\t}"
+//                +   "\n";
         }
         return dot;
     }

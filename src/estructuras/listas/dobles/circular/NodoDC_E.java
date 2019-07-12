@@ -12,38 +12,38 @@ import pojos.Edificio;
  *
  * @author g
  */
-public class NodoDC {
-    private NodoDC siguiente;
-    private NodoDC anterior;
+public class NodoDC_E {
+    private NodoDC_E siguiente;
+    private NodoDC_E anterior;
     private Edificio edificio;
     private ListaSO_S salones;
 
-//    public NodoDC(Edificio edificio) {
+//    public NodoDC_E(Edificio edificio) {
 //        this.siguiente = null;
 //        this.anterior = null;
 //        this.edificio = edificio;
 //    }
     
-    public NodoDC(Edificio edificio, ListaSO_S salones) {
+    public NodoDC_E(Edificio edificio, ListaSO_S salones) {
         this.siguiente = null;
         this.anterior = null;
         this.edificio = edificio;
         this.salones = salones;
     }
 
-    public NodoDC getSiguiente() {
+    public NodoDC_E getSiguiente() {
         return siguiente;
     }
 
-    public void setSiguiente(NodoDC siguiente) {
+    public void setSiguiente(NodoDC_E siguiente) {
         this.siguiente = siguiente;
     }
 
-    public NodoDC getAnterior() {
+    public NodoDC_E getAnterior() {
         return anterior;
     }
 
-    public void setAnterior(NodoDC anterior) {
+    public void setAnterior(NodoDC_E anterior) {
         this.anterior = anterior;
     }
 

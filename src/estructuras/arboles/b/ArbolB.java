@@ -168,7 +168,7 @@ public class ArbolB<T> {
     }
     
     public String graficar(String opcion) throws IOException, InterruptedException{
-    	String nombre = "arbol_b";
+    	String nombre = "arbol_b_horarios";
         String dot_subgrafo_arbol_b = 
         "\n\tsubgraph cluster_arbol_b_horarios"
         + "\n\t{"
@@ -182,7 +182,7 @@ public class ArbolB<T> {
         + "\n\t}";
         if(opcion.equals("grafo")) {
             String dot_grafo_arbol_b = 
-            "digraph b"
+            "digraph arbol_b_horarios"
             + "\n{"
                 + dot_subgrafo_arbol_b
             + "\n}";

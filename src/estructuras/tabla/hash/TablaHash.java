@@ -91,7 +91,11 @@ public class TablaHash {
     }
     
     public int getTamano(){
-        return this.tabla.length;
+        return this.N;
+    }
+    
+    public boolean esVacia(){
+        return this.tabla.length < 1;
     }
     
     public void reHash(){
@@ -150,14 +154,21 @@ public class TablaHash {
     }
     
     public Estudiante buscar(int carnet){
-        int indice = funcionHash(carnet);
-        if(this.tabla.length > 0){
-            for (int i = 0; i < this.tabla.length - 1; i++) {
-                if(i == indice){
-                    if(tabla[i] != null){
-                        return tabla[i];
-                    }else{
-                        return null;
+//        int indice = funcionHash(carnet);
+        if(!esVacia()){
+//            for (int i = 0; i < this.tabla.length - 1; i++) {
+//                if(i == indice){
+//                    if(tabla[i] != null){
+//                        return tabla[i];
+//                    }else{
+//                        return null;
+//                    }
+//                }
+//            }
+            for (Estudiante e : tabla) {
+                if(e != null){
+                    if(carnet == e.getCarnet()){
+                        return e;
                     }
                 }
             }
@@ -167,18 +178,20 @@ public class TablaHash {
         return null;
     }
     
-    public void modificar(int carnet, String nuevo_nombre, String nueva_direccion){
+    public boolean modificar(int carnet, String nuevo_nombre, String nueva_direccion){
         if(buscar(carnet) != null){
             buscar(carnet).setNombre(nuevo_nombre);
             buscar(carnet).setDireccion(nueva_direccion);
             System.out.println("Se ha modificado el carnet: " +  carnet + 
             ", por nombre: " + nuevo_nombre + ", direccion: " + nueva_direccion + ".");
+            return true;
         }else{
             System.out.println("No existe tal carnet en la tabla.");
+            return false;
         }
     }
     
-    public void eliminar(int carnet){
+    public boolean eliminar(int carnet){
         int indice = funcionHash(carnet);
         if(this.tabla.length > 0){
             for (int i = 0; i < this.tabla.length - 1; i++) {
@@ -186,16 +199,19 @@ public class TablaHash {
                     tabla[i] = null;
                     System.out.println("Se ha eliminado el carnet: " + carnet + ".");
                     N--;
+                    return true;
                 }
             }
         }else{
             System.out.println("Tabla vacia.");
+            return false;
         }
+        return false;
     }
     
     public String graficar(String opcion) throws IOException, InterruptedException{
         System.out.println("Se muestra la grafica de los estudiantes en la tabla hash:");
-        String nombre = "tabla_hash";
+        String nombre = "tabla_hash_estudiantes";
         String dot_subgrafo_tabla_hash_estudiantes =
          	"\n\tsubgraph cluster_tabla_hash_estudiantes"
             + 	"\n\t{"
